@@ -10,9 +10,9 @@
 
     $.fn.numElementosParr = function(){
         if (this.prop('tagName') != undefined) {
-            $('body').append("Tiene "+this.length+" "+this.prop('tagName'));
+            $('body').append("<p>Tiene "+this.length+" "+this.prop('tagName')+"</p>");
         }else {
-            $('body').append("No hay ningun elemento con esa etiqueta en el fichero")
+            $('body').append("<p>No hay ningun elemento con esa etiqueta en el fichero</p>")
         }
 
         return this;

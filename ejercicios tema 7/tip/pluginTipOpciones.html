@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<meta charset="utf-8"> 
+		<title>Trabajando con plugins en jQuery - Tip simple</title>
+		<style type="text/css">
+		   .tip{
+		      background-color: #ffcc99;
+		      padding: 10px;
+		      display: none;
+		      position: absolute;
+			  width: 200px;
+		   }
+		   .otroestilotip{
+		      background-color: #cccf49;
+		      padding: 10px;
+		      display: none;
+		      position: absolute;
+			  width: 240px;
+		   }
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<!--<script src="jquery.tip.js"></script>-->
+		<script src="jquery.tipOpPublicas.js"></script>
+	
+	<script>
+		$(document).ready(function(){
+
+			$.fn.tipOpPublicas.defaults.velocidad = 'fast';
+			
+			$("#elemento1").tipOpPublicas("todo bien...");
+
+
+			
+			$("#elemento2").tipOpPublicas("Otra prueba...", {
+				velocidad: 1000,
+				claseTip: "otroestilotip",
+				animacionMuestra: {
+					opacity: "show",
+					padding: '25px',
+					'font-size': '2em'
+				},
+				animacionOculta: {
+					height: "hide",
+					padding: '5px',
+					'font-size': '1em'
+				}
+			});
+		})
+		</script>
+
+	</head>
+	<body>
+		<h1>Trabajando con plugins en jQuery - tip simple</h1>
+	   
+	   <div id="elemento1" style="background-color: #ccccff; padding: 5px;">Pasa el ratón por encima de esta capa...</div>
+
+	   <p>Este texto es para poner <a id="elemento2" href="#">este enlace que también tiene tip</a>.</p>
+
+	</body>
+</html> 
