@@ -1,0 +1,136 @@
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+
+		p + ul {
+			display: none;
+		}
+
+		.fondo{background-color: grey}
+
+	</style>
+	<script src="jquery-3.2.1.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			function aparece(){
+				$(this).next().fadeIn(2000);
+			}
+
+			function desaparece(){
+				$(this).next().fadeOut(2000);
+			}
+
+			//alert("hay "+$('p').length+" cursos");
+
+
+			//$('p').hover(aparece, desaparece);
+
+
+			/*$(document).on('keydown', function(event){
+				if (event.key == "ArrowDown") {
+					$('p + ul').slideDown('fast');
+				}
+				if (event.key == "ArrowUp") {
+					$('p + ul').slideUp('fast');
+				}
+			});*/
+
+
+			$(document).on('keydown', function(event){
+				if (event.key == "ArrowDown") {
+					$('p + ul').slideToggle('fast');
+				}
+			});
+
+
+			//$(document).off('keydown');
+
+
+			/*$(document).one('keydown', function(event){
+				if (event.key == "ArrowDown") {
+					$('p + ul').slideToggle('fast');
+				}
+			});*/
+
+
+			/*$('li.azul').hover(function(e) {
+				if ($(this).next().length == 0) {
+					var hor = "<li>"+$(this).parent().data('hours')+" horas</li>";
+					$(this).parent().append(hor);
+					$(this).next().addClass("fondo");
+				}
+				$(this).next().css({"display":"block", "position":"absolute", "left":e.clientX, "top":e.clientY});
+            }, function(e){
+				$(this).next().css({"display":"none"});
+			});*/
+
+
+			/*$('ul:eq(1)').on('click','.azul', function(e) {
+				if ($(this).next().length == 0) {
+					var hor = "<li>"+$(this).parent().data('hours')+" horas</li>";
+					$(this).parent().append(hor);
+					$(this).next().addClass("fondo");
+				}
+				$(this).next().css({"display":"block", "position":"absolute", "left":e.clientX, "top":e.clientY});
+            });*/
+
+
+            $('ul:eq(1)').on('click','.azul',{tipo : "presencial"} ,function(e) {
+				if ($(this).next().length == 0) {
+					var hor = "<li>"+$(this).parent().data('hours')+" horas "+e.data.tipo+"es</li>";
+					$(this).parent().append(hor);
+					$(this).next().addClass("fondo");
+				}
+				$(this).next().css({"display":"block", "position":"absolute", "left":e.clientX, "top":e.clientY});
+            });
+
+           });
+	</script>
+</head>
+<body>
+	<p>Primero</p>
+	<ul>
+
+		<li>Base de Datos</li>
+		<li>Lenguajes de Marcas</li>
+		<li></li>
+	</ul>
+
+	<p>Segundo</p>
+	<ul>
+		<li >DWESE
+			<ul data-hours='10'>
+				<li class='azul' >Desarrollo Web en Entorno Servidor</li>
+
+			</ul>
+		</li>
+		<li>DWECL
+			<ul data-hours='7'>
+				<li class='azul'>Desarrollo Web en Entorno Cliente</li>
+
+			</ul>
+		</li>
+		<li>DAW
+			<ul data-hours='3'>
+				<li class='azul'>Despliegue de Aplicaciones Web</li>
+
+			</ul>
+		</li>
+		<li>DIWEB
+			<ul data-hours='6'>
+				<li class='azul'>Diseño de Interfaces Web</li>
+
+			</ul>
+		</li>
+		<li>EIE
+			<ul data-hours='4'>
+				<li class='azul'>Entorno e Iniciativa Empresarial</li>
+
+			</ul>
+		</li>
+	</ul>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      var n = prompt("Introduzca un numero menor que 1000:","");
+      if(!isNaN(n)){
+        if(n<1000 && n>=0){
+          for(var x=0;x<=n.length-1;x++){
+              alert(n.charAt(x));
+          }
+        }else{
+            alert("Ese numero es 1000 o mayor que 1000 o menor que 0")
+        }
+      }else{
+          alert("Ese caracter no es un numero valido")
+      }
+
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

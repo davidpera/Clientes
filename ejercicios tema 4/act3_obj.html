@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+
+            Array.prototype.elimina = function(valor){
+                for (var i = 0; i < this.length; i++) {
+                    var p = this.findIndex(valor);
+                    if (this[p]==valor) {
+                        this.splice(p,1);
+                    }
+                }
+            }
+
+            var ar = [4,4,4,4,4];
+            document.write(ar+"<br/>");
+            ar.elimina(4);
+            document.write(ar+"<br/>");
+
+        </script>
+    </body>
+</html>

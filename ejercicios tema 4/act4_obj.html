@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+        function Cliente(nombre,direccion,telefono,nif){
+            this.nombre = nombre;
+            this.direccion = direccion;
+            this.telefono = telefono;
+            this.nif = nif;
+
+            this.mostrar = function(){
+                texc = "";
+                for(let i in this){
+                    if(typeof this[i] != "function"){
+                        texc += i + ": " + this[i] + "<br/>"
+                    }
+                }
+                return texc;
+            }
+        }
+
+        function Empresa(nombre,direccion,telefono,cif){
+            this.nombre = nombre;
+            this.direccion = direccion;
+            this.telefono = telefono;
+            this.cif = cif;
+
+            this.mostrar = function(){
+                texc = "";
+                for(let i in this){
+                    if(typeof this[i] != "function"){
+                        texc += i + ": " + this[i] + "<br/>"
+                    }
+                }
+                return texc;
+            }
+        }
+
+        function Factura(cliente,elementos){
+            this.cliente = cliente;
+            this.elementos = elementos;
+            this.baseImponible= 0;
+            this.iva= 21;
+            this.total= 0;
+            this.formaPago="contado";
+
+            this.instancia = function(){
+                var tex="";
+                for(let i in this){
+                    if(typeof this[i] != "function"){
+                        if(i == "elementos"){
+                            tex += "<br/>";
+                            for(var x = 0; x<this[i].length;x++){
+                                tex += "Producto"+(x+1)+":<br/>"
+                                for(var y = 0; y<this[i][x].length;y++){
+                                    switch(y){
+                                        case 0: tex += "descripcion: "+this[i][x][y]+"<br/>";
+                                            break;
+                                        case 1: tex += "cantidad: "+this[i][x][y]+"<br/>";
+                                            break;
+                                        case 2: tex += "precio: "+this[i][x][y]+"<br/><br/>";
+                                            break;
+                                    }
+                                }
+                            }
+                        }else if(i == "cliente"){
+                            tex += "Cliente:<br/>"
+                            tex += this[i].mostrar();
+                        }else if(i == "empresa"){
+                            tex += "<br/>Empresa:<br/>"
+                            tex += this[i].mostrar();
+                        }else{
+                            tex += i + ": " + this[i] + "<br/>";
+                        }
+                    }
+                }
+                tex += "<br/>"
+                document.write(tex);
+            }
+
+            this.calcTotal = function(){
+                for(let i in this){
+                    if(typeof this[i] != "function"){
+                        if(i == "elementos"){
+                            for(var x = 0; x<this[i].length;x++){
+                                this.baseImponible += this[i][x][1]*this[i][x][2];
+                            }
+                        }
+                    }
+                }
+                this.total = this.baseImponible + this.baseImponible * (this.iva / 100);
+            }
+
+            this.mostTotal = function(){
+                document.write("El total de la compra es: "+this.total);
+            }
+        }
+
+        var cli = new Cliente("pepe","calle 2",654234123,"21452648W");
+        var fac = new Factura(cli,[["patata",3,2],["platano",1,4]]);
+
+        Factura.prototype.empresa =  new Empresa("david S.A.","calle 3",934213543,342345543);
+
+        fac.calcTotal();
+        fac.instancia();
+        fac.mostTotal();
+
+        </script>
+    </body>
+</html>

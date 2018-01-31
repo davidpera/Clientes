@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 8</title>
+        <style type="text/css">
+            .bordes{
+                border-width: 1px;
+                border-left: dashed red;
+                border-bottom: dashed blue;
+                border-right: dashed green;
+                width: 400px;
+                height: 400px;
+            }
+            .cuadrado{
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                background-color: black;
+            }
+            p{
+                font-size: 50px;
+                position: absolute;
+                top: 150px;
+                left: 180px;
+            }
+        </style>
+        <script src="jquery-3.2.1.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            var cont = 0;
+            $(document).ready(function(){
+                $('div.bordes').after('<input type="button" id="final" value="Finalizar"><br/>');
+                $('div.bordes').after('<input type="button" id="parts" value="Parar Todo y termina la actual"><br/>');
+                $('div.bordes').after('<input type="button" id="pars" value="Parar y salta a la siguiente"><br/>');
+                $('div.bordes').after('<input type="button" id="part" value="Parar Todo"><br/>');
+                $('div.bordes').after('<input type="button" id="par" value="Parar"><br/>');
+                $('div.bordes').after('<input type="button" id="emp" value="Empezar"><br/>');
+                $('#emp').on('click',empezar);
+                $('#par').on('click',parar);
+                $('#part').on('click',pararTo);
+                $('#pars').on('click',pararSal);
+                $('#parts').on('click',pararToSal);
+                $('#final').on('click',finalizar);
+            });
+
+            function finalizar(){
+                $('div.cuadrado').finish();
+            }
+
+            function pararToSal(){
+                $('div.cuadrado').stop(true,true);
+            }
+
+            function pararSal(){
+                $('div.cuadrado').stop(false,true);
+            }
+
+            function pararTo(){
+                $('div.cuadrado').stop(true);
+            }
+
+            function parar(){
+                $('div.cuadrado').stop();
+            }
+
+            function empezar(){
+                $('div.cuadrado').css({'left':'20px','top':'20px'});
+                $('div.cuadrado').animate({'top':'350px'},'fast').animate({'left':'350px'},'fast')
+                .animate({'top':'20px'},'fast').animate({'left':'20px'},'fast', function(){
+                    cont += 1;
+                    $('p').text(cont);
+                });
+
+                empezar();
+
+
+            }
+
+        </script>
+    </head>
+    <body>
+        <div class="bordes"><div class="cuadrado"></div></div>
+        <p></p>
+
+    </body>
+</html>

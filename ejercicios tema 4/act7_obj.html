@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+
+            class Empleado{
+                constructor(nombre = "",departamento = "General"){
+                    this.nombre = nombre;
+                    this.departamento = departamento;
+                }
+
+                detalles(){
+                    var texc = "";
+                    for(let i in this){
+                        texc += i + ": " + this[i] + "<br/>"
+                    }
+                    document.write(texc);
+                }
+            }
+
+            class Director extends Empleado {
+                constructor(nombre = "",departamento = "General",informes = []) {
+                    super(nombre,departamento);
+                    this.informes = informes;
+                }
+            }
+
+            class Trabajador extends Empleado {
+                constructor(nombre = "",departamento = "General",proyectos = []) {
+                    super(nombre,departamento);
+                    this.proyectos = proyectos;
+                }
+            }
+
+            class Ingeniero extends Trabajador {
+                constructor(nombre = "",proyectos = [],maquina = "") {
+                    super(nombre,"Ingenieria",proyectos);
+                    this.maquina = maquina;
+                }
+            }
+
+        /*
+            function Empleado(nombre = "",departamento = "General"){
+                this.nombre = nombre;
+                this.departamento = departamento;
+
+            }
+
+            Empleado.prototype.obtDetalles = function (){
+                texc = "";
+                for(let i in this){
+                    if(typeof this[i] != "function"){
+                        texc += i + ": " + this[i] + "<br/>"
+                    }
+                }
+                document.write(texc);
+            }
+
+            function Director(nombre = "",departamento = "General",informes = []){
+                Empleado.call(this,nombre,departamento);
+                this.informes = informes;
+
+            }
+
+            function Trabajador(nombre = "",departamento = "General",proyectos = []){
+                Empleado.call(this,nombre,departamento);
+                this.proyectos = proyectos;
+            }
+
+            function Ingeniero(nombre = "",proyectos = [],maquina = ""){
+                Trabajador.call(this,nombre,"ingenieria",proyectos);
+                this.maquina = maquina;
+            }
+
+            Director.prototype = new Empleado();
+            Director.prototype.constructor = Director;
+
+            Trabajador.prototype = new Empleado();
+            Trabajador.prototype.constructor = Trabajador;
+
+            Ingeniero.prototype = new Trabajador();
+            Ingeniero.prototype.constructor = Ingeniero;
+    */
+            var dir = new Director("Pepe",undefined,[1,2,3]);
+            var tra = new Trabajador("Pedro","Ventas",["alfa","beta"]);
+            var ing = new Ingeniero("Juan",["delta"],undefined)
+
+            document.write("Director--------------<br/>");
+            dir.detalles();
+            document.write("<br/>Trabajador--------------<br/>");
+            tra.detalles();
+            document.write("<br/>Ingeniero--------------<br/>");
+            ing.detalles();
+
+
+        </script>
+    </body>
+</html>

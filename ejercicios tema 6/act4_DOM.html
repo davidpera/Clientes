@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script type="text/javascript">
+            var par = document.getElementsByTagName('p');
+            window.onload = function(){
+                esconder();
+                var enlaces = document.getElementsByTagName('a');
+                for (en of enlaces) {
+                    en.addEventListener("click",mostRespuesta);
+                }
+            }
+
+            function esconder(){
+                for (pa of par) {
+                    pa.style.display = "none";
+                }
+            }
+
+            function mostRespuesta(e){
+                e.preventDefault();
+                esconder();
+                for (pa of par) {
+                    if (pa.getAttribute("name") == e.target.getAttribute("name")) {
+                        pa.style.display = "block";
+                        e.target.style.color = "red";
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h2>Listado FAQs</h2>
+        <a name="ciel" href="">¿De que color es el cielo?</a><br/>
+        <p name="ciel" >Azul</p><br/>
+        <a name="hier" href="">¿De que color es la hierba?</a><br/>
+        <p name="hier" >Verde</p><br/>
+        <a name="mar" href="">¿De que color es el mar?</a><br/>
+        <p name="mar" >Azul</p><br/>
+    </body>
+</html>

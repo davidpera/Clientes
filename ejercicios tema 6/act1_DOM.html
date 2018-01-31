@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script type="text/javascript">
+            window.onload = function(){
+                tipo.addEventListener("change",cambio);
+            }
+
+            function par(){
+                var parrafos = document.getElementsByTagName('p');
+                for (pa of parrafos) {
+                    pa.style.backgroundColor = "orange";
+                }
+            }
+
+            function enl(){
+                var enlaces = document.getElementsByTagName('a');
+                for (en of enlaces) {
+                    en.style.fontSize = "35px";
+                }
+            }
+
+            function cambio(e){
+                switch (e.target.value) {
+                    case "enlace":
+                        enl();
+                        break;
+                    case "parrafo":
+                        par();
+                        break;
+                    case "todo":
+                        par();
+                        enl();
+                        break;
+
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <p>Aplicación web que muestre un desplegable que nos permita seleccionar los elementos html que
+            quiere modificar el estilo. <a href="">Realiza</a> las modificación que quieras, en función del tipo de elemento
+            seleccionado (tipo de letra, color, alineación, visibilidad…)
+            Haz un <a href="">ejemplo</a> con cada uno de ellas. </p>
+        <p>Aplicación web que muestre un desplegable que nos permita seleccionar los elementos html que
+            quiere modificar el estilo. <a href="">Realiza</a> las modificación que quieras, en función del tipo de elemento
+            seleccionado (tipo de letra, color, alineación, visibilidad…)
+            Haz un <a href="">ejemplo</a> con cada uno de ellas. </p>
+        <p>Aplicación web que muestre un desplegable que nos permita seleccionar los elementos html que
+            quiere modificar el estilo. <a href="">Realiza</a> las modificación que quieras, en función del tipo de elemento
+            seleccionado (tipo de letra, color, alineación, visibilidad…)
+            Haz un <a href="">ejemplo</a> con cada uno de ellas. </p>
+        <select id="tipo" name="tipo">
+            <option value="default" selected>Elija el tipo que quiera cambiar</option>
+            <option value="enlace">Enlaces</option>
+            <option value="parrafo">Parrafos</option>
+            <option value="todo">Todo</option>
+        </select>
+    </body>
+</html>

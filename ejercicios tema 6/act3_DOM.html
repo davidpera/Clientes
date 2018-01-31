@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script>
+            window.onload = function(){
+                anadir.addEventListener("click",anadira);
+                borrvacios.addEventListener("click",borrar);
+                clonar.addEventListener("click",clonara);
+            }
+
+            function anadira(){
+                var lis = document.createElement("li");
+                var den = document.createTextNode(texto.value);
+                lis.appendChild(den);
+                lista.appendChild(lis);
+                texto.value = "";
+            }
+
+            function borrar(){
+                var liss = document.getElementsByTagName("li");
+                var vac = [];
+                for(l of liss){
+                    if(l.firstChild.nodeValue== ""){
+                        vac.push(l);
+                    }
+                }
+                for(v of vac){
+                    lista.removeChild(v);
+                }
+
+            }
+
+            function clonara(){
+                var liss = document.getElementsByTagName("li");
+                var l = liss[(liss.length-1)];
+                var clon = l.cloneNode(true);
+                lista.appendChild(clon);
+            }
+        </script>
+    </head>
+    <body>
+        <div id="div">
+            <label for="texto">¿Elemento a insertar?</label>
+            <input id="texto" name="texto" type="text"/>
+            <input id="anadir" type="button" value="Añadir"/>
+            <input id="borrvacios" type="button" value="Borrar nodos vacíos"/>
+            <input id="clonar" type="button" value="Clonar último nodo"/>
+            <ul id="lista"></ul>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ejercicio 5</title>
+        <script src="metodos_cookies.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            /*var fecha = new Date();
+            fecha.setFullYear(2018);*/
+            if (getCookie("contador") != null) {
+                var c = parseInt(getCookie("contador"))+1;
+                setCookie("contador",c/*,fecha*/);
+                alert("Ya has visitado esta pagina "+c+" veces");
+            }else{
+                setCookie("contador",0/*,fecha*/);
+            }
+        </script>
+    </body>
+</html>

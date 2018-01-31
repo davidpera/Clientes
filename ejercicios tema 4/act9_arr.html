@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" /><br/>
+    <label for="a1">Nota DIW:</label>
+    <input type="text" id="a1" /><br/>
+    <label for="a2">Nota DAW:</label>
+    <input type="text" id="a2" /><br/>
+    <label for="a3">Nota DWECL:</label>
+    <input type="text" id="a3" /><br/>
+    <input type="button" id="bot" onclick="introducir();" value="Introducir"/>
+    <input type="button" id="bot2" onclick="mostrar();" value="Mostrar tabla"/>
+    <input type="button" onclick="limpiar();" value="Limpiar tabla y datos"/>
+    <div id="tabla"></div>
+
+    <script>
+    //[[n, [d, d, d]], [n, [d, d, d]], [n, [d, d, d]]]
+        var patnom = /^\s*([A-Z]?[a-z]+\s?)+\s*$/;
+        var patnot = /^\s*([1][0]|[0-9]|[0-9]\.[0-9][0-9]?)\s*$/;
+        var ar = [];
+        var i = 0;
+        function introducir(){
+            n = nombre.value;
+            as1 = a1.value;
+            as2 = a2.value;
+            as3 = a3.value;
+            if(n != "" && as1 != "" && as2 != "" && as3 != ""){
+                if(patnom.test(n)){
+                    if(patnot.test(as1) && patnot.test(as2) && patnot.test(as3)){
+                        ar[i] = [nombre.value, [a1.value, a2.value, a3.value]];
+                        i++;
+                        nombre.value = "";
+                        a1.value = "";
+                        a2.value = "";
+                        a3.value = "";
+                    }else{
+                        alert("Has introducido mal alguna nota.\nIntroduzcalas de nuevo");
+                        a1.value = "";
+                        a2.value = "";
+                        a3.value = "";
+                    }
+                }else{
+                    alert("Has introducido mal el nombre.\nIntroduzcalo de nuevo");
+                    nombre.value = "";
+                }
+            }else{
+                alert("Debe introducir todos los datos antes de darle al boton de introducir")
+            }
+
+        }
+
+        function limpiar(){
+            ar = [];
+            tabla.innerHTML = "";
+            i = 0;
+        }
+
+        function mostrar(){
+              var tex="";
+              tex +="<table border='1'><tr><td>Nombre</td>"+
+                          "<td>DIW</td>"+
+                          "<td>DAW</td>"+
+                          "<td>DWECL</td></tr>"
+              for(j=0;j<ar.length;j++){
+                  for(z=0;z<ar[j].length;z++){
+                      if(z==1){
+                          for(t=0;t<ar[j][z].length;t++){
+                              tex+="<td>"+ar[j][z][t]+"</td>"
+                              if(t==(ar[j][z].length-1)){
+                                  tex+="</tr>";
+                              }
+                          }
+                          continue;
+                      }
+                      tex+="<tr><td>"+ar[j][z]+"</td>";
+                  }
+                  if(j==(ar.length - 1)){
+                     tex += "</table>";
+                  }
+              }
+              if(ar.length != 0){
+                  tabla.innerHTML = tex;
+              }
+
+        }
+
+
+    </script>
+  </body>
+</html>

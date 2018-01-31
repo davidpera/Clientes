@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <p id="p"></p>
+
+    <script>
+
+      var ar = [];
+
+      for (var i = 0; i < 11; i++) {
+        ar[i] = Math.floor(Math.random()*11);
+      }
+      p.innerHTML += "<br/>Array: "+ar;
+
+      var fil = ar.filter(elem => elem < 8);
+      p.innerHTML += "<br/>Menores que 8: "+fil;
+
+      /*ar.forEach(function(element){
+        if (element % 2 != 0){
+          ar.splice(ar.indexOf(element), 1, "impar");
+        }
+      });*/
+
+      var im = ar.map(function(element){
+        if (element % 2 != 0){
+          return "impar";
+        }else{
+          return element;
+        }
+      });
+      p.innerHTML += "<br/>Tras cambiar a impar: "+im;
+
+    </script>
+  </body>
+</html>

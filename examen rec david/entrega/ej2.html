@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+
+		*{padding: 0px;
+			margin: 0px;}
+
+		h1	{margin: 20px;text-align: center;}
+
+		body > div { flex:1 0 auto; display: flex; justify-content:space-between; flex-direction:row; align-items:center; padding:20px; margin: 5% 10%;}
+		div > div {border:1px solid; width: 100px; height: 50px; font-size: 30px; text-align: center;}
+
+		.oculto {visibility: hidden;}
+		.visible {visibility: visible;}
+
+	</style>
+	<script src="cookies.js" charset="utf-8"></script>
+	<script src="limpiar_codigo.js" charset="utf-8"></script>
+	<script type="text/javascript">
+
+		var parr = [];
+        var parra = [];
+		var bot  = document.getElementsByTagName('input');
+		var sol = [];
+		var resp = [];
+		window.onload = function(){
+
+            var div = document.body.children[1].cloneNode(document.body.children[1]);
+            document.body.insertBefore(div, document.body.children[2]);
+            parr = document.body.children[1].getElementsByTagName('p');
+            parra = document.body.children[2].getElementsByTagName('p');
+			buscar();
+			usuario();
+			generar();
+            for (p of parra) {
+				p.parentElement.addEventListener('click', pulsar);
+			}
+			for (b of bot) {
+				b.addEventListener('click', comprobar);
+			}
+
+		}
+
+        function pulsar(){
+            var pat  =  /^(['A','E','I','O','U']|['a','e','i','o','u'])$/
+            var letra = prompt("Introduzca una vocal");
+            while(!pat.test(letra)){
+                letra = prompt("Introduzca una vocal");
+            }
+            var t = document.createTextNode(letra.toUpperCase());
+            this.firstChild.append(t);
+        }
+
+		Array.prototype.compara = function(otro){
+			for (var i = 0; i < this.length; i++) {
+				if (this[i] == otro[i]) {
+					return true;
+				}else{
+					return false;
+				}
+			}
+		}
+
+		function final(){
+			var nueva = window.open("","","width=200, height=200");
+			var t1 = document.createTextNode('Resumen');
+			var t2 = document.createTextNode('Intento 1: '+getCookie('int1'));
+			var t3 = document.createTextNode('Intento 2: '+getCookie('int2'));
+			if (sol.compara(resp)) {
+				nueva.document.write('Has ganado<br/>');
+				var tabla = document.createElement('table');
+				if (getCookie('intento')==null) {
+					var fila1 = tabla.insertRow();
+					var fila2 = tabla.insertRow();
+					var c1 = fila1.insertCell();
+					c1.append(t1);
+					var c2 = fila2.insertCell();
+					c2.append(t2);
+				}else{
+					var fila1 = tabla.insertRow();
+					var fila2 = tabla.insertRow();
+					var fila3 = tabla.insertRow();
+					var c1 = fila1.insertCell();
+					c1.append(t1);
+					var c2 = fila2.insertCell();
+					c2.append(t2);
+					var c3 = fila3.insertCell();
+					c3.append(t3);
+				}
+				nueva.document.body.append(tabla);
+			}else{
+				nueva.document.write('Has perdido<br/>');
+				var tabla = document.createElement('table');
+				if (getCookie('intento')==null) {
+					var fila1 = tabla.insertRow();
+					var fila2 = tabla.insertRow();
+					var c1 = fila1.insertCell();
+					c1.append(t1);
+					var c2 = fila2.insertCell();
+					c2.append(t2);
+				}else{
+					var fila1 = tabla.insertRow();
+					var fila2 = tabla.insertRow();
+					var fila3 = tabla.insertRow();
+					var c1 = fila1.insertCell();
+					c1.append(t1);
+					var c2 = fila2.insertCell();
+					c2.append(t2);
+					var c3 = fila3.insertCell();
+					c3.append(t3);
+				}
+				nueva.document.body.append(tabla);
+			}
+			var contnom = "cont"+getCookie('nombre');
+			nueva.document.write(getCookie('nombre')+' has jugado '+getCookie(contnom)+' partidas');
+			delCookie('intento');
+			delCookie('int1');
+			delCookie('int2');
+
+		}
+
+		function comprobar(){
+            for (p of parr) {
+                p.setAttribute('class','visible');
+            }
+            for (r of parra) {
+                resp.push(r.firstChild.nodeValue);
+            }
+			if(sol.compara(resp)){
+				final();
+			}else{
+				if (getCookie('int1') == null) {
+					setCookie('int1',resp);
+				}
+				alert('Solucion erronea');
+				if (getCookie('intento') == null) {
+					setCookie('int2',resp);
+					setCookie('intento',1);
+					for (p of parr) {
+						p.removeChild(p.firstChild);
+					}
+					generar();
+                    for (r of parra) {
+						r.removeChild(r.firstChild);
+					}
+				}else{
+					final();
+				}
+
+			}
+		}
+
+		function generar() {
+			var arr = ['A','E','I','O','U'];
+			for (a of arr){
+				var t = document.createTextNode(a);
+				var num = Math.floor(Math.random()*5);
+				while (parr[num].firstChild != null){
+					var num = Math.floor(Math.random()*5);
+				}
+				parr[num].setAttribute('class','oculto');
+				parr[num].append(t);
+			}
+
+            for (p of parr) {
+                sol.push(p.firstChild.nodeValue);
+            }
+		}
+
+		function usuario() {
+			var nom = prompt('Introduzca su nombre de usuario');
+			var contnom = "cont"+nom;
+			if (getCookie('nombre') != null) {
+				setCookie('nombre', nom);
+				setCookie(contnom, parseInt(getCookie(contnom))+1)
+			}else{
+				setCookie('nombre', nom);
+				setCookie(contnom, 1);
+			}
+		}
+		//prompt
+	</script>
+
+
+</head>
+<body>
+		<h1>QUIZ DOÑANA</h1>
+		<div>
+			<div><p></p></div>
+			<div><p></p></div>
+			<div><p></p></div>
+			<div><p></p></div>
+			<div><p></p></div>
+		</div>
+		<div><input type='button' value='Comprobar'/></div>
+</body>
+</html>

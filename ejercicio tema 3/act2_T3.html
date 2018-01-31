@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+
+
+      function pag(){
+        var r = Math.floor(Math.random()*3);
+        switch (r) {
+          case 0:
+              location.assign("https://login.live.com");
+            break;
+          case 1:
+              location.assign("https://mail.google.com");
+              break;
+          case 2:
+              location.assign("https://login.yahoo.com");
+              break;
+
+        }
+
+      }
+
+    </script>
+  </head>
+  <body>
+    <a href="javascript:pag()">Correo</a>
+  </body>
+</html>

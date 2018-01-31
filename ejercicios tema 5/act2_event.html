@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 2</title>
+        <style type="text/css">
+            #div{
+                background-color: green;
+                width: 100px;
+                height: 100px;
+                position: absolute;
+            }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            window.onload = function(){
+                window.addEventListener("keydown",mover);
+            }
+
+            var y = 0;
+            var x = 0;
+
+            function mover(e){
+                switch (e.code) {
+                    case "ArrowUp":
+                    case "Numpad8":
+                        div.style.top = (y-=10)+"px";
+                        break;
+                    case "ArrowDown":
+                    case "Numpad2":
+                        div.style.top = (y+=10)+"px";
+                        break;
+                    case "ArrowRight":
+                    case "Numpad6":
+                        div.style.left = (x+=10)+"px";
+                        break;
+                    case "ArrowLeft":
+                    case "Numpad4":
+                        div.style.left = (x-=10)+"px";
+                        break;
+
+                }
+            }
+        </script>
+        <div id="div"></div>
+    </body>
+</html>

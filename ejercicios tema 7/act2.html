@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.2.1.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+            //a
+			//$("ul").first().children().css({color:"red"});
+            //$("p:contains('Primero')").next().children().css({color:"red"});
+            //b
+			//$("ul").first().find("a[href='SImod.html']").css({color:'red'});
+            //$("ul").first().find("a:contains('Sistemas Informáticos')").css({color:'red'});
+            //c
+			//$("ul").first().children("li:nth-child(3)").next().css({color:'red'});
+            //$("ul").first().find("li:contains('Sistemas Informáticos')").next().css({color:'red'});
+            //d
+			//$("ul").first().children("li:gt(2)").css({color:'red'});
+            //$("p:contains('Primero')").next().find("li:gt(2)").css({color:'red'});
+            //e
+			//$("[href]").css({color:'red'});
+            //f
+			//$('a').not("[href]").css({color:'red'});
+            //g
+			//$("a[href*='mod']").css({color:'red'});
+            //h
+			//$("a[href^='mod']").css({color:'red'});
+            //i
+			//$("a[href$='.html']").css({color:'red'});
+            //j
+			//$("ul:eq(1)>li>ul>li:nth-child(2)").css({color:'red'});
+            //$("p:contains('Segundo')").next().find("li ul li:nth-child(2)").css({color:'red'});
+            //k
+            //$("li:empty").text("Nodo vacio").css({color:'red'});
+            //l
+            //$("ul:eq(1)").children("li:even").css({color:'red'});
+            //$("p:contains('Segundo')").next().children("li:even").css({color:'red'});
+            //m
+            //$("ul:first>li:contains('Formación y Orientación Laboral')").attr("href","#");
+		})
+
+	</script>
+</head>
+
+<body>
+	<p>Primero</p>
+	<ul>
+		<li><a href="#">Programación</a></li>
+		<li><a href="modBD.html">Base de Datos</a></li>
+		<li><a href="SImod.html">Sistemas Informáticos</a></li>
+		<li><a href="mod-LM.html">Lenguajes de Marcas</a></li>
+		<li><a>Formación y Orientación Laboral</a></li>
+		<li></li>
+	</ul>
+
+	<p>Segundo</p>
+	<ul>
+		<li>DWESE
+			<ul>
+				<li>Desarrollo Web en Entorno Servidor</li>
+				<li>10 horas</li>
+			</ul>
+		</li>
+		<li>DWECL
+			<ul>
+				<li>Desarrollo Web en Entorno Cliente</li>
+				<li>7 horas</li>
+			</ul>
+		</li>
+		<li>DAW
+			<ul>
+				<li>Despliegue de Aplicaciones Web</li>
+				<li>3 horas</li>
+			</ul>
+		</li>
+		<li>DIWEB
+			<ul>
+				<li>Diseño de Interfaces Web</li>
+				<li>6 horas</li>
+			</ul>
+		</li>
+		<li>EIE
+			<ul>
+				<li>Entorno e Iniciativa Empresarial</li>
+				<li>4 horas</li>
+			</ul>
+		</li>
+	</ul>
+</body>
+</html>

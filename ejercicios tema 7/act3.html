@@ -1,0 +1,100 @@
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.verde {color:green;}
+		.azul {color:blue;}
+		.borde {border:2px solid;}
+	</style>
+	<script src="jquery-3.2.1.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			//$('p').addClass('borde');
+
+			//$('ul:eq(1)').children('li').addClass('verde');
+
+			//$('p').removeClass('borde');
+
+			/*$('p').on('click', function() {
+				$(this).toggleClass('borde');
+			});*/
+
+            /*var prim = $("<p>Módulos de primero</p>");
+            $('p:contains(Primero)').after(prim);
+            $('p:contains(Primero)').remove();
+			$('p:contains(Primero)').text("Módulos de primero");*/
+
+            /*var sec = $("<b><p>Módulos de segundo</p></b>");
+            $('p:contains(Segundo)').after(sec);
+            $('p:contains(Segundo)').remove();
+			$('p:contains(Segundo)').html("<b>Módulos de segundo</b>");*/
+
+            //$('li:empty').remove();
+
+            /*var fol = $("<li>Formación y Orientación Laboral</li>");
+            //$('ul:first').append(fol);
+            fol.appendTo($('ul:first'));*/
+
+            /*var pro = $("<li>Programación</li>");
+            //$('ul:first').prepend(pro);
+            pro.prependTo($('ul:first'));*/
+
+            //$('li:contains("Base de Datos")').after($("<li>Sistemas Informáticos</li>"));
+
+            /*$('li.azul').one('click', function() {
+	            var hor = "<li>"+$(this).parent().data('hours')+" horas</li>";
+	            $(this).parent().append(hor);
+            });*/
+
+            //$('ul:eq(1)').empty();
+
+            //$('ul').first().remove();
+		});
+	</script>
+
+</head>
+<body>
+	<p>Primero</p>
+	<ul>
+
+		<li>Base de Datos</li>
+		<li>Lenguajes de Marcas</li>
+		<li></li>
+	</ul>
+
+	<p>Segundo</p>
+	<ul>
+		<li >DWESE
+			<ul data-hours='10'>
+				<li class='azul' >Desarrollo Web en Entorno Servidor</li>
+
+			</ul>
+		</li>
+		<li>DWECL
+			<ul data-hours='7'>
+				<li class='azul'>Desarrollo Web en Entorno Cliente</li>
+
+			</ul>
+		</li>
+		<li>DAW
+			<ul data-hours='3'>
+				<li class='azul'>Despliegue de Aplicaciones Web</li>
+
+			</ul>
+		</li>
+		<li>DIWEB
+			<ul data-hours='6'>
+				<li class='azul'>Diseño de Interfaces Web</li>
+
+			</ul>
+		</li>
+		<li>EIE
+			<ul data-hours='4'>
+				<li class='azul'>Entorno e Iniciativa Empresarial</li>
+
+			</ul>
+		</li>
+	</ul>
+
+</body>
+</html>

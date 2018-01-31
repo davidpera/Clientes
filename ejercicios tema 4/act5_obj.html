@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            function Vehiculo(mar,mod,col,fab){
+                this.marca = mar;
+                this.modelo = mod;
+                this.color = col;
+                this.anoFabricacion = fab;
+
+            }
+
+            Vehiculo.prototype.mostrarDatos = function(){
+                var texc = "";
+                for(let i in this){
+                    if(typeof this[i] != "function"){
+                        texc += i + ": " + this[i] + "<br/>"
+                    }
+                }
+                document.write (texc+"<br/>");
+            }
+
+            Vehiculo.prototype.acelerar = function(velocidad){
+                document.write("El vehiculo ha acelerado "+velocidad+" m/s");
+            }
+
+            Vehiculo.prototype.arrancar = function(){
+                document.write ("El coche de marca "+this.marca+", modelo "+this.modelo+
+                ", de color "+this.color+" ha arrancado.")
+            }
+
+            Vehiculo.prototype.cilindrada = "";
+
+            Vehiculo.prototype.frenar = function(){
+                document.write ("El coche de marca "+this.marca+", modelo "+this.modelo+
+                ", de color "+this.color+" ha parado.")
+            }
+
+            function Furgoneta(mar,mod,col,fab,nPasaj){
+                Vehiculo.call(this,mar,mod,col,fab);
+                this.numeroPasajeros = nPasaj;
+            }
+
+            function Todoterreno(mar,mod,col,fab,trac){
+                Vehiculo.call(this,mar,mod,col,fab);
+                this.traccion = trac;
+            }
+
+            Furgoneta.prototype = new Vehiculo();
+            Furgoneta.prototype.constructor = Furgoneta;
+
+            Todoterreno.prototype = new Vehiculo();
+            Todoterreno.prototype.constructor = Todoterreno;
+
+            var fra = new Furgoneta("mercedes","benz","arcoiris",1900,10);
+            var tod = new Todoterreno("landrover","4x4","carmesi",2020,"no");
+
+            fra.mostrarDatos();
+            tod.mostrarDatos();
+        </script>
+    </body>
+</html>

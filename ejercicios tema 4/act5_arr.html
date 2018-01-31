@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <p id="p"></p>
+
+    <script>
+
+      var ar = [];
+
+      for (var i = 0; i < 10; i++) {
+        ar[i] = Math.floor((Math.random()*1000)+1);
+      }
+
+      Array.prototype.intermedios = function(){
+          this.pop();
+          this.shift();
+          return this;
+      }
+
+      var ord = ar.sort((a,b) => a-b);
+
+      p.innerHTML = "Array: " +ar;
+      p.innerHTML += "<br/>Quitando primero y ultimo: "+ord.intermedios();
+
+    </script>
+  </body>
+</html>

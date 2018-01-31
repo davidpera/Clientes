@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+    var n1 = 0;
+    var n2 = 0;
+    var t = true;
+    console.log(" 1-suma \n 2-resta \n 3-multiplicacion \n 4-divison \n 5-modulo \n"+
+    " 6-potencia \n 7-raiz cuadrada \n 8-salir \n");
+    do {
+      var n = prompt("Introduzca el numero de la operacion que quiera realizar: ");
+
+      switch (n) {
+        case "1":
+          pedirNumero();console.log("El resultado de la suma es: "+(n1+n2));
+          break;
+        case "2":
+          pedirNumero();console.log("El resultado de la resta es: "+(n1-n2));
+          break;
+        case "3":
+          pedirNumero();console.log("El resultado de la multiplicacion es: "+(n1*n2));
+          break;
+        case "4":
+          pedirNumero();console.log("El resultado de la division es: "+(n1/n2));
+          break;
+        case "5":
+          pedirNumero();console.log("El resultado del modulo es: "+(n1%n2));
+          break;
+        case "6":
+          pedirNumero();console.log("El resultado de la potencia es: "+Math.pow(n1,n2));
+          break;
+        case "7":
+          raiz();
+          break;
+        case "8":
+          var sal = confirm("Seguro que quiere salir");
+          if(sal){
+            t=false;
+          }
+          break;
+        default:
+          console.log("Esa no es una opcion valida, introduzca 1,2,3,4,5 o 6");
+          break;
+      }
+    } while (t);
+
+
+
+
+
+    function pedirNumero(){
+      n1 = prompt("Primer numero: ");
+      n2 = prompt("Segundo numero: ");
+      if(!isNaN(n1) && !isNaN(n2)){
+        n1 = parseFloat(n1);
+        n2 = parseFloat(n2);
+      }
+
+    }
+
+    function raiz(){
+      var n1 = prompt("Numero: ");
+      if(!isNaN(n1) ){
+        var res = Math.sqrt(parseFloat(n1));
+      }
+      console.log("El resultado de la raiz cuadrada es: "+res);
+    }
+
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

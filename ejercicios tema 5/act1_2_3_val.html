@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 1</title>
+        <script src="metodos_cookies.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            var data = document.getElementsByName('datos');
+            window.onload = function(){
+                for (d of data) {
+                    d.addEventListener('change',validar);
+                }
+                conf.addEventListener('change',confirmar);
+                bot.addEventListener('click',guardar);
+                ver.addEventListener('click',mostrar);
+            }
+            function mostrar(){
+                /*var tex = "";
+                for(da of data){
+                    if(getCookie(da.id) != null){
+                       tex += da.id+": "+da.value+"<br/>";
+                    }
+                }
+                par.innerHTML = tex;*/
+                par.innerHTML = decodeURIComponent(document.cookie);
+            }
+
+            function guardar(){
+                for(da of data){
+                    setCookie(da.id,da.value);
+                }
+            }
+
+            function confirmar(e){
+                if (e.target.value.length <= 10 || e.target.value.length >= 8) {
+                    if (e.target.value !== contra.value) {
+                        par.innerHTML += "La confirmacion no coincide con la contraseña\n"
+                        e.target.value = "";
+                    }else{
+                        par.innerHTML = "";
+                    }
+                }
+            }
+
+            /*function noVacio(e){
+                var ar = [dni.value,nombre.value,fnac.value,email.value,pagweb.value,contra.value,conf.value];
+                for(val of ar){
+                    if(val.trim() == ''){
+                        par.innerHTML = "No se puede dejar ningun parametro vacio";
+                    }else{
+                        par.innerHTML = "";
+                    }
+                }
+            }*/
+
+            function validar(e){
+                if(!e.target.checkValidity()){
+                    switch (e.target.id) {
+                        case 'dni':
+                            if (e.target.validity.patternMismatch){
+                                e.target.setCustomValidity('Patron del dni no valido tiene que '+
+                                'tener 99.999.999-X');
+                                e.target.value = "";
+                            }else{
+                                e.target.setCustomValidity('');
+                            }
+                            break;
+                        case 'nombre':
+                            if (e.target.validity.patternMismatch){
+                                e.target.setCustomValidity('Patron del nombre no valido'+
+                                ' tiene que tener como minimo un nombre y un apellido y '+
+                                'como maximo dos de cada');
+                                e.target.value = "";
+                            }else{
+                                e.target.setCustomValidity('');
+                            }
+                            break;
+                        case 'fnac':
+                            if (e.target.validity.patternMismatch){
+                                e.target.setCustomValidity('Patron de la fecha de nacimiento '+
+                                'no valido tiene que tener dd/mm/yyyy');
+                                e.target.value = "";
+                            }else{
+                                e.target.setCustomValidity('');
+                            }
+                            break;
+                        case 'email':
+                            if (e.target.validity.patternMismatch){
+                                e.target.setCustomValidity('Patron del email no valido tiene '+
+                                'que tener xxx@yyy.zzz');
+                                e.target.value = "";
+                            }else{
+                                e.target.setCustomValidity('');
+                            }
+                            break;
+                        case 'pagweb':
+                            if (e.target.validity.patternMismatch){
+                                e.target.setCustomValidity('Patron dela pagina web no valido '+
+                                'tiene que tener http://www.xxxx.yyy');
+                                e.target.value = "";
+                            }else{
+                                e.target.setCustomValidity('');
+                            }
+                            break;
+                        case 'contra':
+                            if (e.target.validity.patternMismatch){
+                                e.target.setCustomValidity('Patron de la contraseña no valido '+
+                                'tiene que tener entre 8 y 10 caracteres');
+                                e.target.value = "";
+                            }else{
+                                e.target.setCustomValidity('');
+                            }
+                            break;
+
+                    }
+
+                    par.innerHTML = e.target.validationMessage+"\n";
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <form id="formul">
+            DNI:<input type="text" id="dni" name="datos"
+            pattern="[0-9]{2}\.[0-9]{3}\.[0-9]{3}[-][A-Z]"
+            placeholder="99.999.999-X" required><br/>
+            Nombre:<input type="text" id="nombre" name="datos"
+            pattern="[A-Z]?[a-z]+\s[A-Z]?[a-z]+\s?[A-Z]?[a-z]*\s?[A-Z]?[a-z]*"
+            placeholder="2 - 4 palabras" required><br/>
+            F. Nac:<input type="text" id="fnac" name="datos"
+            pattern="([1-2]?[0-9]|[3][0-1])\/([1][0-2]|[0-9])\/[1-2][0-9]{3}"
+            placeholder="dd/mm/yyyy" required><br/>
+            E-mail:<input type="text" id="email" name="datos"
+            pattern="[a-z0-9]+@[a-z]+\.[a-z]+" placeholder="xxx@yyy.zzz" required><br/>
+            Pag. Web:<input type="text" id="pagweb" name="datos"
+            pattern="http:\/\/[w]{3}\.[a-z0-9]+\.[a-z]+"
+            placeholder="http://www.xxxx.yyy" required><br/>
+            Contraseña:<input type="password" id="contra" name="datos"
+            pattern="[a-zA-Z0-9]{8,10}" placeholder="8 - 10 caracteres" required><br/>
+            Confirmar Contraseña:<input type="password" id="conf" name="datos"
+            placeholder="8 - 10 caracteres required"><br/>
+            Numero de hijos<input type="number" id="numhijos" name="datos" min="0" max="10"/ required><br/>
+            <input type="button" id="bot" value="GUARDAR"/>
+            <input type="button" id="ver" value="VER"/>
+
+        </form>
+        <p id="par"></p>
+    </body>
+</html>

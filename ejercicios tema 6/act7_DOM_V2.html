@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>actividad 7</title>
+        <style type="text/css">
+            table{
+                border-width: 1px;
+                border-style: solid;
+                text-align: center;
+            }
+
+            tr{
+                border-width: 1px;
+                border-style: solid;
+
+            }
+
+            td{
+                border-width: 1px;
+                border-style: solid;
+                height: 20px;
+                width: 20px;
+            }
+        </style>
+        <script type="text/javascript">
+            var nf = 0;
+            var nc = 0;
+            window.onload = function() {
+                crearTabla();
+                bor.addEventListener("click",borrar);
+                ins.addEventListener("click",insertar);
+                rel.addEventListener("click",rellenar);
+                anadirEvent();
+            }
+
+            function anadirEvent(){
+                var tds = document.getElementsByTagName("td");
+                for (t of tds){
+                    t.addEventListener("click",pedirNum);
+                }
+            }
+
+            function pedirNum(e){
+                for (t of tabla.rows){
+                    for (var i = 0;i < nc;i++){
+                        if (t.children[i] == e.target){
+                            t.deleteCell(i);
+                            var nv = parseInt(prompt("Que valor quiere"));
+                            nv = compNum(nv,"Que valor quiere");
+                            var ntx = document.createTextNode(nv);
+                            var ntd = t.insertCell(i);
+                            ntd.appendChild(ntx);
+                        }
+                    }
+                }
+            }
+
+            function rellenar(){
+                for (var i = 0; i < nf; i++) {
+                    for (var j = 0; j < nc; j++) {
+                        tabla.rows[i].deleteCell(j);
+                        var val = parseInt(prompt("Valor posicion "+(i+1)+"-"+(j+1)));
+                        val = compNum(val,"Valor posicion "+(i+1)+"-"+(j+1))
+                        var tx = document.createTextNode(val);
+                        var td = tabla.rows[i].insertCell(j);
+                        td.appendChild(tx);
+                    }
+                }
+                anadirEvent();
+            }
+
+            function insertar(){
+                if (tabla.children.length != 0) {
+                    var fila = tabla.insertRow();
+                    for (var i = 0; i < nc; i++) {
+                        fila.insertCell();
+                    }
+                    anadirEvent();
+                    nf++;
+                }else{
+                    alert("no existe la tabla");
+                }
+            }
+
+            function borrar(){
+                var fb = prompt("Que fila quiere borrar");
+                if (tabla.children.length != 0) {
+                    if (fb >= 1 && fb <= nf) {
+                        tabla.deleteRow(fb-1);
+                        nf--;
+                    }else{
+                        alert("fila no valida");
+                    }
+                }else{
+                    alert("no hay mas filas");
+                }
+
+            }
+
+            function crearTabla(){
+                nf = parseInt(prompt("Cuantas filas quiere"));
+                nf = compNum(nf,"Cuantas filas quiere");
+                nc = parseInt(prompt("Cuantas columnas quiere"));
+                nc = compNum(nc,"Cuantas columnas quiere");
+                for (var i = 0; i < nf; i++) {
+                    var fila = tabla.insertRow();
+                    for (var j = 0; j < nc; j++) {
+                        var val = parseInt(prompt("Valor posicion "+(i+1)+"-"+(j+1)));
+                        val = compNum(val,"Valor posicion "+(i+1)+"-"+(j+1));
+                        var tx = document.createTextNode(val);
+                        var td = fila.insertCell();
+                        td.appendChild(tx);
+                    }
+                }
+            }
+
+            function compNum(n,mensaje){
+                while (isNaN(n)){
+                   alert("tienes que escribir un numero valido");
+                   n = parseInt(prompt(mensaje));
+                }
+                return n;
+            }
+        </script>
+    </head>
+    <body>
+        <div id="div">
+            <table id="tabla">
+            </table>
+        </div>
+        <input type="button" id="bor" value="Borrar fila">
+        <input type="button" id="ins" value="Insertar fila nueva">
+        <input type="button" id="rel" value="Rellenar tabla">
+    </body>
+</html>

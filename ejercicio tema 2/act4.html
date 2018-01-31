@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      var n1 = prompt("Introduzca un numero:","");
+      var num1 = parseInt(n1);
+      var n2 = prompt("Introduzca el otro numero:","");
+      var num2 = parseInt(n2);
+
+      if(num1>num2){
+        for(var x = num2;x<=num1;x++){
+          if(x%8==0){
+            alert(x);
+          }
+        }
+      }else{
+        for(var x = num1;x<=num2;x++){
+          if(x%8==0){
+            alert(x);
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

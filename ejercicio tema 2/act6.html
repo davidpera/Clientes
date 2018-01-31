@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      var n = prompt("Introduzca su dni:","");
+      var num = "";
+      var letras = ['T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E','T'];
+      var sal = "";
+        for(var x = 0;x<=7;x++){
+            num += n.charAt(x);
+        }
+        if (!isNaN(num)){
+            var let = letras[num%23];
+        }else{
+            alert("A introducido un numero no valido")
+        }
+        if(let==n.charAt(8)){
+            alert("el numero y la letra de DNI son correctos");
+        }else{
+            alert("La letra indicada es incorrecta, la letra correcta seria: "+let);
+        }
+        
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

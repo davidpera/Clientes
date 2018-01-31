@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      var a = prompt("introduzca la matricula: ");
+      var pat = new RegExp(/^\d{4}\s[B-DF-HJ-NPR-TV-Z]{3}$/);
+      if(pat.test(a)){
+        alert(a);
+      }else{
+        alert("patron incorrecto");
+      }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

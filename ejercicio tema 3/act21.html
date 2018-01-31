@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      var a = prompt("introduzca un dia de la semana y un numero: ");
+      var pat = /^(lunes|martes|miercoles|jueves|viernes|sabado|domingo)\s([0-2][0-9]|3[0-1])$/;
+      if(pat.test(a.toLowerCase())){
+        alert(a);
+      }else{
+        alert("patron incorrecto");
+      }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

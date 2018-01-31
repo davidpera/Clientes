@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      var n = (prompt("Introduzca la palabra:","")).toLowerCase();
+      if(isNaN(n)){
+        switch (n) {
+          case "casa":
+            document.write("House");
+            break;
+          case "mesa":
+            document.write("Table");
+            break;
+          case "perro":
+            document.write("Dog");
+            break;
+          case "gato":
+            document.write("Cat");
+            break;
+          default:
+            document.write("Esa palabra no esta en el diccionario");
+            break;
+        }
+      }else{
+        document.write("Usted a introducido un numero")
+      }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

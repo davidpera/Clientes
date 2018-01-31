@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+
+  <body>
+    <img src="0.jpg" id="imagen" width="400" height="400"/>
+    <script>
+        var ar = ["0.jpg","1.jpg","2.jpg","3.jpg","4.jpg"];
+        var i = 0;
+        function cambiar(){
+          imagen.src = ar[i];
+          i = (i+1)%ar.length;
+        }
+          intevalo = setInterval("cambiar()",1000);
+    </script>
+  </body>
+
+</html>

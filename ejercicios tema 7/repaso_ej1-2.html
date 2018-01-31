@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style type="text/css">
+
+        </style>
+        <script src="jquery-3.2.1.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                //var lista = $('ul');
+                //$('ul').remove();
+                //$('body').append(lista);
+                //$('ul').append('<li>Cinco</li>');
+                //$('ul').prepend('<li>Cero</li>');
+                //$('ul > li:last').remove();
+                //$('ul > li:first').remove();
+                //$('ul > li:lt(2)').remove();
+                //$('ul > li:gt(-3)').remove();
+                //$('input').on('change',mostrar);
+                
+            });
+            function mostrar() 
+            {
+                var p = $('input').prop('checked');
+                var a = $('input').attr('checked');
+                console.log('El attr de checked da: '+a+' y el prop da: '+p);
+            }
+        </script>
+    </head>
+    <body>
+        <ul>
+            <li>Uno</li>
+            <li>Dos</li>
+            <li>Tres</li>
+            <li>Cuatro</li>
+        </ul>
+        <input type="checkbox" id="check" checked="checked">Prueba
+    </body>
+</html>

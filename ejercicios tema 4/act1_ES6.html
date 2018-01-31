@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <input type="button" value="Anadir valores" onclick="anadir(undefined,1,2,3);"/>
+    <input type="button" value="Menor" onclick="menor();"/>
+    <input type="button" value="Triple" onclick="triple();"/>
+    <ul id="lis" name=""></ul>
+
+    <script>
+      var ar = [];
+
+      function anadir(nombre = "valores", ...items){
+        lis.name = nombre;
+        alert("Este es el nombre de la lista: "+lis.name);
+        lis.innerHTML = "";
+        for (var i = 0; i < items.length; i++) {
+          ar[i] = items[i];
+          lis.innerHTML += "<li>"+items[i]+"</li>";
+        }
+      }
+
+      function menor(){
+        if (ar.length == 0) {
+          alert("La lista esta vacia introduzca los valores primero")
+        }else{
+          alert("El menor de la lista es: "+Math.min(...ar));
+        }
+      }
+
+    var triple = () => {
+        if (ar.length == 0) {
+          alert("La lista esta vacia introduzca los valores primero")
+        }else{
+          lis.innerHTML = "";
+          for (var i = 0; i < ar.length; i++) {
+            lis.innerHTML += "<li>"+(ar[i]*3)+"</li>";
+            ar[i]=ar[i]*3;
+          }
+        }
+      }
+
+
+    </script>
+  </body>
+</html>

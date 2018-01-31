@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            function Modulo(nombre,duracion){
+                this.nombre=nombre;
+                this.duracion=duracion;
+            }
+
+            var m1 = new Modulo("DAW",1231);
+            var m2 = new Modulo("DIW",432);
+            var m3 = new Modulo("DWECL",2134);
+
+            var weakmap = new WeakMap();
+
+            weakmap.set(m1,32);
+            weakmap.set(m2,22);
+            weakmap.set(m3,42);
+
+            var alumno = new WeakSet();
+
+            alumno.add(m1);
+            alumno.add(m3);
+
+            document.write("EL alumno tiene DWECL?<br/>");
+            document.write((alumno.has(m3)?"si":"no"));
+        </script>
+    </body>
+</html>

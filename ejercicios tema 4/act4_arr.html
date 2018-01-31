@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <p id="p"></p>
+
+    <script>
+
+      ar = [];
+
+      for (var i = 0; i < 10; i++) {
+        ar[i] = Math.floor((Math.random()*1000)+1);
+      }
+
+      p.innerHTML = ar;
+      p.innerHTML += "<br/>El menor es: "+Math.min(...ar);
+      p.innerHTML += "<br/>El maximo es: "+Math.max(...ar);
+
+      ar.splice(ar.indexOf(Math.max(...ar)),1);
+      ar.splice(ar.indexOf(Math.min(...ar)),1);
+
+      p.innerHTML += "<br/>"+ar;
+
+    </script>
+  </body>
+</html>

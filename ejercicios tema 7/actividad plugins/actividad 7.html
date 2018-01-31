@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 1</title>
+        <script src="jquery-3.2.1.js" charset="utf-8"></script>
+        <script src="cookies/jquery.cookie.js" type="text/javascript"></script>
+        <script src="validation/dist/jquery.validate.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("formul").validate({
+                    rules: {
+                        'dni':{required:true }
+                    },
+                    messages: {
+                        'dni':{required:'El dni es necesario'}
+                    }
+                });
+                $('#bot').on('click',guardar);
+                $('#ver').on('click',mostrar);
+                $('#bor').on('click',borrar);
+
+            });
+            function borrar(){
+                var c = $.cookie();
+                for (var i in c){
+                    $.removeCookie(i);
+                }
+            }
+            function mostrar(){
+                var tex = "";
+                $('div > input').each(function(){
+                    var id = $(this).attr('id');
+                    if ($.cookie(id) != undefined) {
+                        tex += $(this).prev().text()+" "+$.cookie(id)+'<br/>';
+                    }
+                });
+                $('p').html(tex);
+            }
+
+            function guardar(){
+                $('div > input').each(function(){
+                    var id = $(this).attr('id');
+                    var val = $(this).val();
+                    if ($(this).val() != '') {
+                        $.cookie(id, val);
+                    }
+                });
+
+            }
+
+            function confirmar(e){
+                if (e.target.value.length <= 10 || e.target.value.length >= 8) {
+                    if (e.target.value !== contra.value) {
+                        par.innerHTML += "La confirmacion no coincide con la contraseña\n"
+                        e.target.value = "";
+                    }else{
+                        par.innerHTML = "";
+                    }
+                }
+            }
+
+            /*function noVacio(e){
+                var ar = [dni.value,nombre.value,fnac.value,email.value,pagweb.value,contra.value,conf.value];
+                for(val of ar){
+                    if(val.trim() == ''){
+                        par.innerHTML = "No se puede dejar ningun parametro vacio";
+                    }else{
+                        par.innerHTML = "";
+                    }
+                }
+            }*/
+
+            /*function validar(e){
+                if(!e.target.checkValidity()){
+                    switch (e.target.id) {
+                        case 'dni':
+                            if (e.target.validity.patternMismatch){
+                                e.target.setCustomValidity('Patron del dni no valido tiene que '+
+                                'tener 99.999.999-X');
+                                e.target.value = "";
+                            }else{
+                                e.target.setCustomValidity('');
+                            }
+                            break;
+                        case 'nombre':
+                            if (e.target.validity.patternMismatch){
+                                e.target.setCustomValidity('Patron del nombre no valido'+
+                                ' tiene que tener como minimo un nombre y un apellido y '+
+                                'como maximo dos de cada');
+                                e.target.value = "";
+                            }else{
+                                e.target.setCustomValidity('');
+                            }
+                            break;
+                        case 'fnac':
+                            if (e.target.validity.patternMismatch){
+                                e.target.setCustomValidity('Patron de la fecha de nacimiento '+
+                                'no valido tiene que tener dd/mm/yyyy');
+                                e.target.value = "";
+                            }else{
+                                e.target.setCustomValidity('');
+                            }
+                            break;
+                        case 'email':
+                            if (e.target.validity.patternMismatch){
+                                e.target.setCustomValidity('Patron del email no valido tiene '+
+                                'que tener xxx@yyy.zzz');
+                                e.target.value = "";
+                            }else{
+                                e.target.setCustomValidity('');
+                            }
+                            break;
+                        case 'pagweb':
+                            if (e.target.validity.patternMismatch){
+                                e.target.setCustomValidity('Patron dela pagina web no valido '+
+                                'tiene que tener http://www.xxxx.yyy');
+                                e.target.value = "";
+                            }else{
+                                e.target.setCustomValidity('');
+                            }
+                            break;
+                        case 'contra':
+                            if (e.target.validity.patternMismatch){
+                                e.target.setCustomValidity('Patron de la contraseña no valido '+
+                                'tiene que tener entre 8 y 10 caracteres');
+                                e.target.value = "";
+                            }else{
+                                e.target.setCustomValidity('');
+                            }
+                            break;
+
+                    }
+
+                    par.innerHTML = e.target.validationMessage+"\n";
+                }
+            }*/
+        </script>
+    </head>
+    <body>
+        <form id="formul">
+            <div>
+                <label>DNI:</label><input type="text" id="dni" name="dni"
+                pattern="[0-9]{2}\.[0-9]{3}\.[0-9]{3}[-][A-Z]" required>99.999.999-X<br/><br/>
+                <label>Nombre:</label><input type="text" id="nombre" name="nombre"
+                pattern="[A-Z]?[a-z]+\s[A-Z]?[a-z]+\s?[A-Z]?[a-z]*\s?[A-Z]?[a-z]*"
+                required>2 - 4 palabras<br/><br/>
+                <label>F. Nac:</label><input type="text" id="fnac" name="fnac"
+                pattern="([1-2]?[0-9]|[3][0-1])\/([1][0-2]|[0-9])\/[1-2][0-9]{3}"
+                required>dd/mm/yyyy<br/><br/>
+                <label>E-mail:</label><input type="text" id="email" name="email"
+                pattern="[a-z0-9]+@[a-z]+\.[a-z]+" required>xxx@yyy.zzz<br/><br/>
+                <label>Pag. Web:</label><input type="text" id="pagweb" name="pagweb"
+                pattern="http:\/\/[w]{3}\.[a-z0-9]+\.[a-z]+" required>http://www.xxxx.yyy<br/><br/>
+                <label>Contraseña:</label><input type="password" id="contra" name="contra"
+                pattern="[a-zA-Z0-9]{8,10}" required>8 - 10 caracteres<br/><br/>
+                <label>Confirmar Contraseña:</label><input type="password" id="conf" name="conf"
+                pattern="[a-zA-Z0-9]{8,10}" required>8 - 10 caracteres<br/><br/>
+                <label>Numero de hijos:</label><input type="number" id="numhijos" name="numhijos" min="0" max="10"/ required> de 0 a 10<br/>
+
+            </div>
+            <input type="button" id="bot" value="GUARDAR"/>
+            <input type="button" id="ver" value="VER"/>
+            <input type="button" id="bor" value="BORRAR"/>
+        </form>
+        <p id="par"></p>
+    </body>
+</html>

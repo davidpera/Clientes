@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+        class Persona {
+            constructor(nombre,edad,genero) {
+                this.nombre = nombre;
+                this.edad = edad;
+                this.genero = genero;
+            }
+            detalles(){
+                var texc = "";
+                for(let i in this){
+                //    if(typeof this[i] != "function"){
+                        texc += i + ": " + this[i] + "<br/>"
+                //    }
+                }
+                document.write(texc);
+            }
+        }
+
+        class Alumno extends Persona {
+            constructor(nombre,edad,genero,curso,grupo) {
+                super(nombre,edad,genero);
+                this.curso = curso;
+                this.grupo = grupo;
+            }
+
+            registrar() {
+                document.write("<br/>El alumno "+this.nombre+" ha quedado registrado"+
+                " al grupo "+this.grupo+" del curso "+this.curso+"<br/>");
+            }
+
+        }
+
+        class Profesor extends Persona {
+            constructor(nombre,edad,genero,asignatura,nivel) {
+                super(nombre,edad,genero);
+                this.asignatura = asignatura;
+                this.nivel = nivel;
+            }
+
+            asignar() {
+                document.write("<br/>El profesor "+this.nombre+" ha quedado asignados"+
+                " a la asignatura "+this.asignatura+" con nivel "+this.nivel+"<br/>");
+            }
+
+        }
+
+/*
+            function Persona(nombre,edad,genero){
+                this.nombre = nombre;
+                this.edad = edad;
+                this.genero = genero;
+
+            }
+
+            Persona.prototype.obtDetalles = function (){
+                texc = "";
+                for(let i in this){
+                    if(typeof this[i] != "function"){
+                        texc += i + ": " + this[i] + "<br/>"
+                    }
+                }
+                document.write(texc);
+            }
+
+            function Alumno(nombre,edad,genero,curso,grupo){
+                Persona.call(this,nombre,edad,genero);
+                this.curso = curso;
+                this.grupo = grupo;
+                this.registrar = function(){
+                    document.write("<br/>El alumno "+this.nombre+" ha quedado registrado"+
+                    " al grupo "+this.grupo+" del curso "+this.curso+"<br/>");
+                }
+
+            }
+*/
+            /*Alumno.prototype.registrar = function(){
+                document.write("<br/>El alumno "+this.nombre+" ha quedado registrado al grupo "+this.grupo+" del curso "+this.curso+"<br/>");
+            }*/
+/*
+            function Profesor(nombre,edad,genero,asignatura,nivel){
+                Persona.call(this,nombre,edad,genero);
+                this.asignatura = asignatura;
+                this.nivel = nivel;
+                this.asignar = function(){
+                    document.write("<br/>El profesor "+this.nombre+" ha quedado asignados"+
+                    " a la asignatura "+this.asignatura+" con nivel "+this.nivel+"<br/>");
+                }
+            }
+*/
+            /*Profesor.prototype.asignar = function(){
+                document.write("<br/>El profesor "+this.nombre+" ha quedado asignados a la asignatura "+this.asignatura+" con nivel "+this.nivel+"<br/>");
+            }*/
+/*
+            Alumno.prototype = new Persona();
+            Alumno.prototype.constructor = Alumno;
+
+            Profesor.prototype = new Persona();
+            Profesor.prototype.constructor = Profesor;
+*/
+            var al = new Alumno("Pepe",18,"hombre","1º","B");
+            var pro = new Profesor("Pedro",37,"hombre","Lengua",2);
+
+            document.write("Alumno--------------<br/>");
+            al.detalles();
+            al.registrar();
+            document.write("<br/>Profesor--------------<br/>");
+            pro.detalles();
+            pro.asignar();
+
+
+        </script>
+    </body>
+</html>

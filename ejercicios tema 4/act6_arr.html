@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <label for="v">Introduzca un numero a buscar y borrar</label>
+    <input type="text" id="v"/>
+    <input type="button" value="introducir" onclick="buscar();"/><br/>
+    <p id="p"></p>
+
+    <script>
+
+      var ar = [];
+      var sum = 0;
+
+      for (var i = 1, j = 0; i < 22; i=i+2, j++) {
+        ar[j] = i;
+        sum += ar[j];
+      }
+
+      p.innerHTML += ar;
+      p.innerHTML += "<br/>Suma: "+sum;
+      p.innerHTML += "<br/>Orden inverso: "+ar.reverse();
+      p.innerHTML += "<br/>Orden ascendente: "+ar.sort((a,b)=>a-b);
+      p.innerHTML += "<br/>Orden descendente: "+ar.sort((a,b)=>b-a);
+
+      function buscar(){
+        if (v.value!="") {
+          var val = parseInt(v.value);
+          if (ar.indexOf(val) >= 0) {
+            ar.splice(ar.indexOf(val),1);
+            p.innerHTML += "<br/><br/>Encontrado y borrado: "+ar;
+            p.innerHTML += "<br/>Orden ascendente: "+ar.sort((a,b)=>a-b);
+            p.innerHTML += "<br/>Orden descendente: "+ar.sort((a,b)=>b-a);
+          }else{
+            alert("Numero no encontrado")
+          }
+        }else{
+          alert("Debe introducir un numero antes de pulsar el boton")
+        }
+      }
+
+      //p.innerHTML += "<br/>"+ar;
+
+    </script>
+  </body>
+</html>

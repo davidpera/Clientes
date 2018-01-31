@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+    var t = true;
+    console.log(" 1-suma \n 2-resta \n 3-multiplicacion \n 4-divison \n 5-modulo \n 6-salir \n");
+    do {
+      var n = prompt("Introduzca el numero de la operacion que quiera realizar: ");
+      
+      switch (n) {
+        case "1":
+          suma();
+          break;
+        case "2":
+          resta();
+          break;
+        case "3":
+          mult();
+          break;
+        case "4":
+          div();
+          break;
+        case "5":
+          mod();
+          break;
+        case "6":
+          var sal = confirm("Seguro que quiere salir");
+          if(sal){
+            t=false;
+          }
+          break;
+        default:
+          console.log("Esa no es una opcion valida, introduzca 1,2,3,4,5 o 6");
+          break;
+      }
+    } while (t);
+
+    function suma(){
+      var n1 = prompt("Primer numero: ");
+      var n2 = prompt("Segundo numero: ");
+      if(!isNaN(n1) && !isNaN(n2)){
+        var res = parseInt(n1)+parseInt(n2);
+      }
+      console.log("El resultado de la suma es: "+res);
+    }
+
+    function resta(){
+      var n1 = prompt("Primer numero: ");
+      var n2 = prompt("Segundo numero: ");
+      if(!isNaN(n1) && !isNaN(n2)){
+        var res = parseInt(n1)-parseInt(n2);
+      }
+      console.log("El resultado de la resta es: "+res);
+    }
+    function mult(){
+      var n1 = prompt("Primer numero: ");
+      var n2 = prompt("Segundo numero: ");
+      if(!isNaN(n1) && !isNaN(n2)){
+        var res = parseInt(n1)*parseInt(n2);
+      }
+      console.log("El resultado de la multiplicacion es: "+res);
+    }
+    function div(){
+      var n1 = prompt("Primer numero: ");
+      var n2 = prompt("Segundo numero: ");
+      if(!isNaN(n1) && !isNaN(n2)){
+        var res = parseInt(n1)/parseInt(n2);
+      }
+      console.log("El resultado de la division es: "+res);
+    }
+    function mod(){
+      var n1 = prompt("Primer numero: ");
+      var n2 = prompt("Segundo numero: ");
+      if(!isNaN(n1) && !isNaN(n2)){
+        var res = parseInt(n1)%parseInt(n2);
+      }
+      console.log("El resultado de la multiplicacion es: "+res);
+    }
+
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+    alert("Introduzca 5 cadenas: ");
+    var pat = /^[a-z]+$/
+    var cad = "";
+    var abc = "abcdefghijkmnopqrstuvwxyz";
+
+    for (var i = 0; i < 5; i++) {
+      var p = prompt((i+1)+"- ");
+      if(pat.test(p)){
+        cad += p;
+      }else{
+        console.log("La cadena debe de ser de letras minusculas");
+      }
+    }
+    
+    for (var x = 0; x < abc.length; x++) {
+      var pat2 = new RegExp(abc[x],"g");
+      var r = cad.match(pat2);
+      if (r != null) {
+        console.log(abc[x]+" se repite "+r.length+" veces");
+      }
+    }
+
+    /*for (var x = 97; x <= 122; x++) {
+      var letr = String.fromCharCode(x);
+
+      var cont = 0;
+      for (var i = 0; i < arr.length; i++) {
+        for (var z = 0; z < arr[i].length; z++) {
+          if (arr[i].charCodeAt(z) == x){
+            cont++
+          }
+        }
+      }
+      if(cont != 0){
+        console.log("La letra: "+letr+" se repite "+ cont + " veces");
+      }
+    }*/
+
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

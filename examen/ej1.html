@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang='es'>
+        <head>
+              <meta charset="utf-8" />
+              <title></title>
+              <style type="text/css">
+                  .error{color:red;}
+              </style>
+              <script src="cookies.js" type="text/javascript" ></script>
+              <script>
+
+                var inputs = document.getElementsByName('inform');
+                  window.onload = function(){
+                      if (getCookie("nombre") != null) {
+                          suscrito();
+                      }
+                      submit.addEventListener('click', comprobar);
+                      for (i of inputs) {
+                          i.addEventListener('blur',comprobarInput);
+                      }
+                  }
+
+                  function comprobar(e){
+                      e.preventDefault();
+                      //location.reload();
+                      var tags = document.getElementsByTagName("label");
+                      for (ta of tags) {
+                          if (ta.children[0].value == "") {
+                              mapa.set(ta.children[0].getAttribute("id"),false);
+                              var p = document.createElement('p');
+                              var t = document.createTextNode('Campo sin rellenar');
+                              p.setAttribute("class","error");
+                              p.appendChild(t);
+                              if(ta.children[1] != null){
+                                  var nod = ta.lastChild;
+                                  ta.replaceChild(p, nod);
+                              }else{
+                                  ta.appendChild(p);
+                              }
+                          }else{
+                              if(ta.children[1] != null){
+                                  ta.removeChild(ta.children[1]);
+                              }
+                          }
+                      }
+                  }
+
+                  function avanzar(){
+                      var temp = window.open("temp.html","","width=300, height=300, top=500, left=1000 ");
+                      var tim = setTimeout(function(){temp.close()},2000);
+                      var hoy = new Date();
+                      hoy.setMonth((hoy.getMonth()) + parseInt(meses.value));
+                      var caduc = hoy.getDate()+"/"+(hoy.getMonth()+1)+"/"+hoy.getFullYear();
+                      setCookie("expira",caduc,hoy);
+                      setCookie("nombre",nomb.value,hoy);
+                      console.log(getCookie("expira"));
+                      var tim2 = setTimeout(function(){location.reload();},2001);
+
+                  }
+
+                  function quitarSub(){
+                    delCookie("nombre");
+                    delCookie("expira");
+                    location.reload();
+                  }
+
+                  function suscrito(){
+                      for (let el of document.body.children) {
+                        document.body.removeChild(el);
+                      }
+                      var nodo = document.createElement('p');
+                      nodo.textContent = 'Bienvenido '+getCookie("nombre")+', su suscripción es válida hasta '+getCookie("expira");
+                      document.body.appendChild(nodo);
+                      var nodo = document.createElement('input');
+                      nodo.setAttribute('type', 'button');
+                      nodo.setAttribute('value', 'Cancelar suscripción');
+                      document.body.appendChild(nodo);
+                      nodo.onclick = cancelar;
+                      /*var bod = document.createElement('body');
+                      var htm = document.createElement('html');
+                      var p = document.createElement('p');
+                      var t = document.createTextNode("Bienvenido "+getCookie("nombre")
+                      +" , su suscripcion es valida hasta "+getCookie("expira"));
+                      p.appendChild(t);
+                      var b = document.createElement("input");
+                      b.setAttribute("type", "button");
+                      bod.appendChild(p);
+                      bod.appendChild(b);
+                      htm.appendChild(bod);
+                      document.appendChild(htm);*/
+
+                  }
+                  var mapa = new Map();
+                  var nomb = "nomb", tel = "tel", meses = "meses";
+                  mapa.set(nomb, false);
+                  mapa.set(tel,false);
+                  mapa.set(meses,false);
+                  function comprobarInput(){
+                      var valor = this.value;
+                      var pat = /^\(\d{3}\)\s\d{2}-\d{2}-\d{2}$/;
+                      var p = document.createElement('p');
+                      p.setAttribute("class","error");
+                      if (valor == "") {
+                          mapa.set(this.getAttribute("id"),false);
+                          var t = document.createTextNode('Campo sin rellenar');
+                          p.appendChild(t);
+                          if(this.parentElement.children[1] != null){
+                              this.parentElement.replaceChild(p,this.parentElement.children[1]);
+                          }else{
+                              this.parentElement.appendChild(p);
+                          }
+                      }else{
+                          switch (this.getAttribute("id")) {
+                              case "nomb":
+                                  if ((valor.search(/[a-z]/) == -1) || (valor.search(/[A-Z]/) == -1)
+                                  || (valor.search(/[0-9]/) == -1) || (valor.search(/(\.|_|-)/) == -1)) {
+                                      mapa.set(this.getAttribute("id"),false);
+                                      var t = document.createTextNode('Campo no valido');
+                                      p.appendChild(t);
+                                      if(this.parentElement.children[1] != null){
+                                          this.parentElement.replaceChild(p,this.parentElement.children[1]);
+                                      }else{
+                                          this.parentElement.appendChild(p);
+                                      }
+                                  }else{
+                                      mapa.set(this.getAttribute("id"),true);
+                                      if(this.parentElement.children[1] != null){
+                                          this.parentElement.removeChild(this.parentElement.children[1]);
+                                      }
+                                  }
+                                  break;
+                              case "tel":
+                                    if(!pat.test(valor)){
+                                        mapa.set(this.getAttribute("id"),false);
+                                        var t = document.createTextNode('Campo no valido');
+                                        p.appendChild(t);
+                                        if(this.parentElement.children[1] != null){
+                                            this.parentElement.replaceChild(p,this.parentElement.children[1]);
+                                        }else{
+                                            this.parentElement.appendChild(p);
+                                        }
+                                    }else{
+                                        mapa.set(this.getAttribute("id"),true);
+                                        if(this.parentElement.children[1] != null){
+                                            this.parentElement.removeChild(this.parentElement.children[1]);
+                                        }
+
+                                    }
+                                  break;
+                                case "meses":
+                                    if(valor > 24 || valor < 1){
+                                        mapa.set(this.getAttribute("id"),false);
+                                        var t = document.createTextNode('Campo no valido');
+                                        p.appendChild(t);
+                                        if(this.parentElement.children[1] != null){
+                                            this.parentElement.replaceChild(p,this.parentElement.children[1]);
+                                        }else{
+                                            this.parentElement.appendChild(p);
+                                        }
+                                    }else{
+                                        mapa.set(this.getAttribute("id"),true);
+                                        if(this.parentElement.children[1] != null){
+                                            this.parentElement.removeChild(this.parentElement.children[1]);
+                                        }
+
+                                    }
+                                break;
+                          }
+
+                      }
+                      var valido = true;
+                      var k = mapa.keys();
+                      for (let v of k) {
+                        if (mapa.get(v) === false) {
+                          valido = false;
+                        }
+                      }
+                      if(valido){
+                          submit.addEventListener('click',avanzar);
+                      }
+                  }
+              </script>
+
+        </head>
+        <body id="body">
+              <h1>Formulario de registo Formación Doñana</h1>
+              <form>
+
+                  <label id="n">Nombre:
+                        <input type="text" id="nomb" name="inform" title='Debe contener al menos una minúscula, mayúscula,número y alguno de estos signos (. - _)' />
+                  </label>
+                  <br>
+                  <label id="t">Teléfono:
+                        <input type="telefono" id="tel" name="inform" type="text"  placeholder='(XXX) XX-XX-XX' />
+                  </label>
+                  <br>
+                  <label id="m">Nº meses:
+                        <input type="number" id="meses" name="inform"  min='1' max='24' title='Debe introducir una cantidad entre 1 y 24'/>
+                  </label>
+                  <br><br>
+
+                  <input type="submit" id="submit" value="Registrar" />
+
+              </form>
+
+        </body>
+</html>

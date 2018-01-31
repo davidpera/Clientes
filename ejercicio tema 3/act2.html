@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      var f = new Date();
+      var fn = new Date(1996,5,1);
+
+      var mil = f-fn;
+      var ho = (mil/1000)/3600;
+      var d = ho/24;
+      var m = d/30;
+      var an = m/12;
+      alert("Años: "+parseInt(an)+" Meses: "+parseInt(12-(m%12))+" Dias: "+parseInt(30-(d%30)));
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

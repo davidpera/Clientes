@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+    var tot="";
+    var tex ="";
+    var cont=0;
+
+      function tirar(){
+        var dad1 = Math.floor((Math.random()*6)+1);
+        var dad2 = Math.floor((Math.random()*6)+1);
+        d1.value = dad1;
+        d2.value = dad2;
+        tot += (dad1+dad2)+"\n";
+        cont++;
+        if(cont==10){
+          clearInterval(intervalo);
+          bot.disabled = false;
+          for (var i = 2; i < 13; i++) {
+              var pat = new RegExp("^"+i+"$","gm");
+              var cont = tot.match(pat);
+              if(cont!=null){
+                tex += "El resultado "+i+" salio "+cont.length+" veces <br />";
+              }
+          }
+          parr.innerHTML = tex;
+          tex = "";
+          tot="";
+          cont = 0;
+        }
+      }
+      function todos(){
+        bot.disabled = true;
+        parr.innerHTML = "";
+        intervalo = setInterval(tirar, 1000);
+      }
+
+    </script>
+  </head>
+  <body>
+    <input type="text" id="d1" />
+    <input type="text" id="d2" />
+    <input type="button" id="bot" value="Tirar" onclick="todos();" />
+    <p id="parr"></p>
+  </body>
+</html>

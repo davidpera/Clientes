@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <p id="p"></p>
+
+    <script>
+
+      var obtenerImporteConImpuestos2 = function (impsin){
+        var ar = [];
+        if(!isNaN(impsin)){
+              ar[1] = impsin + (impsin*0.21);
+              ar[2] = impsin + (impsin*0.10);
+              ar[3] = impsin + (impsin*0.05);
+        }else{
+          alert("Los parametros deben de ser numeros");
+        }
+        return ar;
+      }
+
+      p.innerHTML=obtenerImporteConImpuestos2(21);
+
+    </script>
+  </body>
+</html>

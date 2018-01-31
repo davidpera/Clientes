@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Actividad 3</title>
+	<style type="text/css">
+		.preguntas{
+			color: blue;
+			margin-left: 5px;
+		}
+		.respuesta{
+			background-color: lightgray;
+			display: none;
+			margin-left: 5px;
+		}
+		.respuesta::before{
+			content: "R ";
+			color: green;
+			margin-left: -10px;
+		}
+		.r{
+			position: absolute;
+			left: 0px;
+		}
+    </style>
+    <script src="jquery-3.2.1.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+        	$('p.preguntas').on('click',responder);
+        });
+
+        function responder()
+        {
+        	$(this).css({'color':'red'});
+			var padre = $(this);
+        	//$('p.r').remove();
+			//$('p.respuesta').slideUp('fast');
+        	$('p.respuesta').each(function(){
+        		if ($(this).is(':visible') && $(this).prev().text() != padre.text()) {
+        			$(this).slideUp('fast');
+        		}
+        	});
+        	//var y = 0;
+        	$(this).next().slideToggle('fast'/*,function(){
+        		y = $(this).position().top;
+        		$(this).after('<p class="r">R</p>');
+        		$('p.r').css({'top': y});
+        	}*/);
+
+
+        }
+    </script>
+</head>
+<body>
+	<p class="preguntas">¿Pregunta 1?</p>
+	<p class="respuesta">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<p class="preguntas">¿Pregunta 2?</p>
+	<p class="respuesta">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<p class="preguntas">¿Pregunta 3?</p>
+	<p class="respuesta">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<p class="preguntas">¿Pregunta 4?</p>
+	<p class="respuesta">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</body>
+</html>

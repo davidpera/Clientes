@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+      <input type="text" id="pal" />
+      <input type="button" value="Buscar" onclick="buscar();"/>
+
+      <p> La República de San Marino no es un Estado miembro de la Unión Europea, pero se le permitió utilizar el euro el 1 de enero de 2002 a causa de los vínculos con el Estado italiano, como se hizo para Andorra, el Principado de Mónaco y el Vaticano. El euro sustituí a la lira San Marino (SML) a una tasa de conversión de 1 euro = 1.936,27 SML. Hablando </p>
+
+
+
+    <script>
+        function buscar() {
+
+            var valor = document.getElementById("pal").value;
+            //var pat = new RegExp("(' '|'')"+valor+"(' '|\.|\,)");
+            if(!window.find(valor,true,false,false,true)){
+                alert("palabra no encontrada");
+            }
+
+            if(!window.find){
+              alert("Este navegador no acepta el metodo");
+            }
+        }
+    </script>
+
+  </body>
+</html>

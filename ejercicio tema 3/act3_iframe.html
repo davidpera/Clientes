@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function calcular(){
+        var doc = ifr.contentDocument? ifr.contentDocument: ifr.contentWindow.document;
+
+        var soluc = Math.pow(doc.forms['ifrform'].elements['bas'].value,doc.forms['ifrform'].elements['exp'].value);
+        sol.value = soluc;
+      }
+    </script>
+  </head>
+
+  <body>
+    <iframe src="a3iframe.html" id="ifr" height="150" width="300" ></iframe>
+    <p>El resultado de la potencia es:<p><br/>
+    <input type="button" value="Calcular" onclick="calcular();"/>
+    <input type="text" id="sol" name="sol"/>
+  </body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 5</title>
+        <style type="text/css">
+            div{
+                border-width: 1px;
+                border-style: solid;
+            }
+            .ej1{
+                width: 800px;
+                height: 70px;
+            }
+            .ej2{
+                position: absolute;
+                left: 100px;
+                top: 100px;
+            }
+        </style>
+        <script src="jquery-3.2.1.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('div.ej1').after('<p></p>');
+                $('p').after('<input type="button" id="mov" value="mover">');
+                $('p').after('<input type="button" id="aum" value="aumentar">');
+                $('p').next().after('<input type="button" id="red" value="reducir">');
+                $('p').after('<input type="button" id="ocu" value="ocultar/mostrar">');
+                $('p').after('<input type="button" id="movaum" value="mover/aumletra">');
+                $('div.ej1').on('dblclick', cambio);
+                $('div.ej1').addClass('ej2');
+                $('#mov').on('click', mover);
+                $('#aum').on('click', aumentar);
+                $('#red').on('click', disminuir);
+                //$('#ocu').on('click', ej5);
+                $('#ocu').on('click', ej6);
+                $('div.ej1').append('<p>Hola</p>');
+                $('#movaum').on('click', ej7);
+
+            });
+
+            function ej5(){
+                $('div.ej1').toggle('fast').toggle('fast');
+            }
+            function ej6(){
+                $('div.ej1').toggle('fast').delay(2000).toggle('fast');
+            }
+            function ej7(){
+                //$('div.ej1').css({'left':'+=100px','font-size':'+=30px'});
+                $('div.ej1').animate({'left':'+=100px'}, function(){
+                    $(this).css({'font-size':'+=30px'});
+                });
+            }
+
+            function aumentar(){
+                //$('div.ej1').css({'width':num, 'height':num});
+                var num = "+="+prompt('Introduzca el numero de pixeles que quiera aumentar');
+                $('div.ej1').animate({'width':num, 'height':num});
+            }
+
+            function disminuir(){
+                //$('div.ej1').css({'width':num, 'height':num});
+                var num = "-="+prompt('Introduzca el numero de pixeles que quiera disminuir');
+                $('div.ej1').animate({'width':num, 'height':num});
+            }
+
+            function mover(){
+                $('div.ej1').animate({'left':'+=100px','width':'-=150px'});
+            }
+
+            function cambio(e){
+                if ($(this).width() == '800') {
+                    $(this).animate({'width':'250px', 'height':'250px'});
+                    $(this).next().html($(this).width()+" ancho "+$(this).height()+" alto<br/>x="
+                    +$(this).position().left+" y="+$(this).position().top);
+                } else {
+                    $(this).animate({'width':'800px', 'height':'70px'});
+                    $(this).next().html($(this).width()+" ancho "+$(this).height()+" alto<br/>x="
+                    +$(this).position().left+" y="+$(this).position().top);
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="ej1">
+
+        </div>
+
+    </body>
+</html>

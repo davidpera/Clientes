@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+  <body>
+    <form name="reloj">
+        <input type="text" name="horas" />
+        <input type="text" name="minutos"/>
+        <input type="text" name="segundos"/>
+    </form>
+
+    <form name="alarma">
+        <input type="text" id="hra" name="horasa" />
+        <input type="text" id="mia" name="minutosa"/>
+        <input type="text" id="sea" name="segundosa"/>
+        <input type="button" value="Introducir alarma" onclick="alarm();"/>
+        <input type="button" value="Desactivar alarma" onclick="clearInterval(intervaloc);"/>
+    </form>
+
+    <script>
+        var h;
+        var m;
+        var s;
+        var pat = /^\d$/;
+        var pat2 = /^\d{1,2}/;
+        function hora(){
+
+            var t = new Date();
+            h = t.getHours();
+            m = t.getMinutes();
+            if(pat.test(m)){
+                m="0"+t.getMinutes();
+            }
+            s = t.getSeconds();
+            if(pat.test(s)){
+                s="0"+t.getSeconds();
+            }
+           document.reloj.horas.value = h;
+           document.reloj.minutos.value = m;
+           document.reloj.segundos.value = s;
+        }
+        intervalo = setInterval(hora,1000);
+
+        var ha;
+        var ma;
+        var sa;
+        function alarm(){
+
+            ha = document.getElementById("hra").value;
+            ma = document.getElementById("mia").value;
+            sa = document.getElementById("sea").value;
+
+            if(pat2.test(ha) && pat2.test(ma) && pat2.test(sa)){
+                if(pat.test(ma)){
+                    document.getElementById("mia").value = "0"+ma;
+                }
+                if(pat.test(sa)){
+                    document.getElementById("sea").value = "0"+sa;
+                }
+            }
+        }
+
+        intervaloal = setInterval(alarm,1000);
+
+        function comprobar(){
+            if(h==ha && m==ma && s==sa){
+                if(confirm("¡Alerta! \n¿Quiere dormir un poco mas?")){
+                    ma = parseInt(ma)+2;
+                    if(pat.test(ma)){
+                        ma="0"+ma;
+                    }
+                    document.alarma.minutosa.value = ma;
+                }else{
+                  clearInterval(intervaloc);
+                }
+            }
+        }
+         intervaloc = setInterval(comprobar,1000);
+
+
+
+    </script>
+  </body>
+</html>

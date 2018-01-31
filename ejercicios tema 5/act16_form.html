@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 16</title>
+        <script type="text/javascript">
+            window.onload = function(){
+                red.addEventListener('change',cambio);
+                blue.addEventListener('change',cambio);
+                green.addEventListener('change',cambio);
+            }
+
+            function cambio(){
+                formul.style.background = e.target.value;
+            }
+        </script>
+    </head>
+    <body>
+        <form id="formul">
+            Elija un color<br/>
+            <input type="radio" id="red" value="red"/>Rojo<br/>
+            <input type="radio" id="blue" value="blue"/>Azul<br/>
+            <input type="radio" id="green" value="green"/>Verde<br/>
+        </form>
+    </body>
+</html>

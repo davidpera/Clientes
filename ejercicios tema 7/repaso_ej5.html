@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style type="text/css">
+            div{
+                border: 1px solid;
+                height: 200px;
+                width: 200px;
+                float: left;
+            }
+            p{
+                font-size: 50px;
+                position: relative;
+                text-align: center;
+                top: 15px;
+                display: none;
+            }
+            .bloqueado{
+                display: block;
+            }
+            .pulsado{
+                display: block;
+            }
+        </style>
+        <script src="jquery-3.2.1.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            var cont = 0;
+            var nodo = '';
+            var aciertos = 0;
+            var temp ="";
+            $(document).ready(function(){
+                generar();
+                $('div').on('click',mostrar);
+            });
+
+            function mostrar(e){
+                if (cont < 2) {
+                    if (cont == 1) {
+                        if ($(this).children(0).text() == nodo.text()) {
+                            $(this).children(0).addClass('bloqueado');
+                            $(this).off(e);
+                            nodo.addClass('bloqueado');
+                            nodo.parent().off(e);
+                            aciertos++;
+                        }
+                    }
+
+                    cont++;
+
+                    $(this).children(0).show();
+
+                    nodo = $(this).children(0);
+
+                    if (cont == 2) {
+                        temp = setTimeout(limpiarNoSelect, 1500);
+                    }
+
+
+                }else{
+                    clearTimeout(temp);
+                    limpiarNoSelect();
+                    $(this).children(0).show();
+                    nodo = $(this).children(0);
+                    cont = 1;
+                }
+
+                if (aciertos == 2) {
+                    alert('has ganado');
+                    $('div').off(e);
+                }
+            }
+
+            function limpiarNoSelect(){
+                $('div > p').each(function(){
+                    if (!$(this).hasClass('bloqueado')) {
+                        $(this).hide();
+                    }
+                });
+            }
+
+            function generar(){
+                var nums = [1,1,2,2];
+
+                for (n of nums) {
+                    var au = Math.floor(Math.random()*4);
+                    while ($('p:nth('+au+')').text() != '') {
+                        au = Math.floor(Math.random()*4);
+                    }
+                    $('p:nth('+au+')').text(n);
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div><p></p></div>
+        <div><p></p></div>
+        <div><p></p></div>
+        <div><p></p></div>
+    </body>
+</html>

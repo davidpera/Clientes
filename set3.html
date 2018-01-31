@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+
+		// var s = new Set ([iterable]);
+
+		var str = 'Hello world',
+			arr = ['Hello', 'world'],
+			map = new Map(),
+			o1 = {a:1},
+			o2 = {a:1};
+
+		var set1 = new Set(str);
+		var set2 = new Set(arr);
+		var set3 = new Set(map);
+		var set4 = new Set(set1);
+		//var set5 = new Set(o1); //error
+		//var set5 = new Set({a:1}); //error
+		var set5 = new Set([o1,o2]);
+		console.log(set1,set2,set3,set4,set5);
+
+		//Métodos básicos : add, delete, forEach
+		//Otros: clear, has, entries, values, keys
+
+		//ADD
+
+		var mySet = new Set();
+
+		mySet.add(1);
+		mySet.add(4*2); // podemos añadir expresiones para que sean evaluadas en tiempo de ejecución
+
+		mySet.add(4).add(5).add(4); //no añade valores repetidos
+		console.log(mySet);
+
+		
+		mySet.add({a:1}).add({a:1});
+		mySet.add(o1).add(o2); //añadimos la referencia a esos objetos
+		mySet.add(o1); //no se añade
+		console.log(mySet);
+		console.log(mySet.size);
+
+
+		//DELETE
+		mySet.delete({a:1}); //no elimina
+		mySet.delete(o1);
+		mySet.delete(4*2);
+		console.log(mySet);
+
+		//CONVERSIONES ARRAY -> SET
+
+		var myArr = ['Hi','Hello','world'];
+		var mySet2 = new Set(myArr);
+		console.log(mySet2.size);
+		mySet2.forEach(x => console.log(x));
+
+		var mySet3 = new Set();
+		mySet3.add(myArr); //añado la referencia
+		console.log(mySet3.size);
+		mySet3.forEach(x => console.log(x));
+
+		//para conseguir el mismo resultado que en el ejemplo anterior a través de add tenemos que utilizar el método map
+
+		var mySet4 = new Set();
+		myArr.map( i => mySet4.add(i));
+		console.log(mySet4.size);
+		mySet4.forEach(x => console.log(x));
+
+
+		//CONVERSIONES SET -> ARRAY
+
+		//...
+
+		var myArr2 = [...mySet4];
+		console.log(myArr2);
+
+		//ARRAY.FROM
+		var myArr3 = Array.from(mySet4);
+		console.log(myArr3);
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

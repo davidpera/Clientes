@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script>
+            function productoAlimenticio(cod, nom, prec){
+                this.codigo = cod;
+                this.nombre = nom;
+                this.precio = prec;
+
+                this.imprimeDatos = function(){
+                    document.write ("<br/>Producto: <br/> Codigo: "+this.codigo+"<br/>"+
+                    " Nombre: "+this.nombre+"<br/> Precio: "+this.precio+"<br/>");
+                }
+
+            }
+
+            var obj1 = new productoAlimenticio(111,"patata",23.5);
+            var obj2 = new productoAlimenticio(222,"boniato",2.5);
+            var obj3 = new productoAlimenticio(333,"platano",3.5);
+
+            var ar = [obj1,obj2,obj3];
+
+            for (var i = 0; i < ar.length; i++) {
+                ar[i].imprimeDatos();
+            }
+
+        </script>
+    </body>
+</html>

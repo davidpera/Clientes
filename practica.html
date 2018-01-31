@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Pruebas</title>
+		<script type="text/javascript">
+			window.onload = function(){
+				Node.prototype.insertAfter = function(nuevo, nodo){
+					if (nodo.nextSibling != null){
+						this.insertBefore(nuevo, nodo.nextSibling);
+						console.log("insert");
+					}else{
+						this.appendChild(nuevo, nodo);
+						console.log("append");
+					}
+				}
+
+				var p = document.createElement("p");
+				var t = document.createTextNode("Prueba");
+				p.appendChild(t);
+				body.insertAfter(p, sec);
+			}
+		</script>
+	</head>
+	<body id="body">
+		<div id="prim"><p>antes</p></div>
+		<div id="sec"><p>despues</p></div>
+	</body>
+</html>

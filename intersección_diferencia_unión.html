@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+
+		var setA = new Set( [ 'Monday', 'Tuesday', 'Friday', 'Saturday' ] ),
+		    setB = new Set( [ 'Tuesday', 'Sunday', 'Wednesday', 'Thursday' ] );
+
+		//INTERSECCIÓN
+				 
+		var setC = new Set( [ ...setA ].filter( x => setB.has( x ) ) );
+		console.info( setC.size ); // 1
+		 
+		setC.forEach( x => console.info( x ) ); // Tuesday
+
+
+		//DIFERENCIA
+
+		//Obtiene los elementos del setA que no están en B
+		var setC = new Set( [ ...setA ].filter( x => ! setB.has( x ) ) );
+ 
+		console.info( setC.size ); // 3
+		 
+		setC.forEach( x => console.info( x ) );
+		// Monday
+		// Friday
+		// Saturday
+
+
+		//UNIÓN
+		var setC = new Set( [ ...setA, ...setB ] );
+ 
+		console.info( setC.size ); // 7
+		 
+		setC.forEach( x => console.info( x ) );
+		// Monday
+		// Tuesday
+		// Friday
+		// Saturday
+		// Sunday
+		// Wednesday
+		// Thursday
+
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

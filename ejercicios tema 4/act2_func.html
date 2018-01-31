@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <p id="p"></p>
+
+    <script>
+      function obtenerImporteConImpuestos(impsin,tiprod){
+        var tiprod = tiprod || 1;
+        if(!isNaN(impsin) && !isNaN(tiprod)){
+          switch (tiprod) {
+            case 1:
+              var s = impsin + (impsin*0.21);
+              break;
+            case 2:
+              var s = impsin + (impsin*0.10);
+              break;
+            case 3:
+              var s = impsin + (impsin*0.05);
+              break;
+            default:
+              alert("El segundo parametro no puede ser distinto de 1, 2 o 3")
+          }
+        }else{
+          alert("Los parametros deben de ser numeros");
+        }
+        return s;
+      }
+
+      p.innerHTML=obtenerImporteConImpuestos(200);
+
+    </script>
+  </body>
+</html>

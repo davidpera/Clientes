@@ -1,0 +1,34 @@
+<html>
+   <head>
+      <title>Creando plugins en jQuery</title>
+      <style type="text/css">
+         div{
+            background-color: #ff9966; 
+            padding: 10px;
+         }
+      </style>
+      <meta charset='utf-8'>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script type="text/javascript" src="jquery.parpadear.js"></script>
+      <script type="text/javascript">
+         $(document).ready(function(){
+            //parpadean los elementos de class CSS "parpadear"
+            $(".parpadear").parpadea();
+            
+            //añado un evento clic para un botón, para que al pulsarlo parpadeen los elementos de clase parpadear
+            $("#botonparpadear").click(function(){
+               $(".parpadear").parpadea();
+            })
+         })
+      </script>
+      
+   </head>
+   <body>
+      <p class="parpadear">Hola que tal, esto parpadeó gracias a jQuery!</p>
+      <p>Párrafo normal que no va a parpadear.</p>
+      <p class="parpadear">Sí parpadea</p>
+      <p>Párrafo normal que no va a parpadear tampoco...</p>
+      <div class="parpadear" >Esta capa también tiene la clase parpadear, con lo que ya se sabe...</div>
+      <p><input type="button" value="Parpadea de nuevo" id="botonparpadear"></p>
+   </body>
+</html>

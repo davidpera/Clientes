@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>actividad 6</title>
+        <script src="metodos_cookies.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            var cont;
+            var sistem = document.getElementsByName('SO');
+            window.onload = function(){
+
+                for (s of sistem) {
+                    if (getCookie(s.id)==null) {
+                        setCookie(s.id,0);
+                    }
+                    ponerValores(s.id);
+
+                }
+
+                if(getCookie("contador") == null){
+                    setCookie("contador",0);
+                }
+                par.innerHTML = "Se han votado "+getCookie("contador")+" veces";
+
+                vot.addEventListener("click",votar);
+            }
+
+            function ponerValores(id){
+                switch (id) {
+                    case "ios":
+                        iosb.value = getCookie(s.id);
+                        break;
+                    case "android":
+                        androidb.value = getCookie(s.id);
+                        break;
+                    case "windows":
+                        windowsb.value = getCookie(s.id);
+                        break;
+                    case "otro":
+                        otrob.value = getCookie(s.id);
+                        break;
+
+                }
+            }
+
+            function votar(){
+                for (s of sistem) {
+                    if (s.checked == true) {
+                        var val = parseInt(getCookie(s.id))+10;
+                        setCookie(s.id,val);
+
+                    }
+                    ponerValores(s.id);
+                }
+
+                var valu = parseInt(getCookie("contador"))+1;
+                setCookie("contador",valu);
+                par.innerHTML = "Se han votado "+valu+" veces";
+            }
+        </script>
+    </head>
+    <body>
+        <p>¿Que sistema operativo movil te gusta mas?</p>
+        <input type="radio" id="ios" name="SO" />IOS<br/>
+        <input type="radio" id="android" name="SO" />Android<br/>
+        <input type="radio" id="windows" name="SO" />Windows phone<br/>
+        <input type="radio" id="otro" name="SO" />Otro<br/>
+        <br/>
+        <input type="button" id="vot" value="Votar!"><br/>
+        <br/>
+        <meter id="iosb" min="0" max="100"></meter>IOS<br/>
+        <meter id="androidb" min="0" max="100"></meter>Android<br/>
+        <meter id="windowsb" min="0" max="100"></meter>Windows phone<br/>
+        <meter id="otrob" min="0" max="100"></meter>Otro<br/>
+        <p id="par"></p>
+    </body>
+</html>

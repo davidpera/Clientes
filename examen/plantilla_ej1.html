@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang='es'>
+        <head>
+            <meta charset="utf-8" />
+            <title></title>
+            <style type="text/css">
+                .error{color:red;}
+            </style>
+            <script src="cookies.js" charset="utf-8"></script>
+            <script src="limpiar_codigo.js" charset="utf-8"></script>
+            <script>
+                window.onload = function() {
+                    buscar();
+                    if (getCookie('name') != null) {
+                        estaRegistrado();
+                    } else {
+                        f.onsubmit = function(e) {
+                            e.preventDefault();
+                            //registroValido();
+                            borrarCamposError();
+                            comprobarNombre();
+                            comprobarTelefono();
+                            comprobarMeses();
+                            if (camposOk()) {
+                                registroValido();
+                            }
+                        }
+                    }
+                }
+
+                function estaRegistrado() {
+                    document.body.removeChild(document.body.firstChild);
+                    document.body.removeChild(f);
+                    var nombre2 = getCookie('name');
+                    var fecha2 = getCookie('fecha');
+                    var fecha3 = new Date(fecha2);
+                    var fecha4 = fecha3.toLocaleDateString();
+                    var nodo = document.createElement('p');
+                    nodo.textContent = `Bienvenido ${nombre2}, su suscripción es válida hasta ${fecha4}`;
+                    document.body.appendChild(nodo);
+                    var nodo = document.createElement('input');
+                    nodo.setAttribute('type', 'button');
+                    nodo.setAttribute('value', 'Cancelar suscripción');
+                    document.body.appendChild(nodo);
+                    nodo.onclick = cancelar;
+                    window.onkeydown = teclado;
+                }
+
+                function teclado(e) {
+                    if (e.ctrlKey && e.code == 'KeyC') {
+                        cancelar();
+                    }
+                }
+
+                function cancelar() {
+                    delCookie('name');
+                    delCookie('fecha');
+                    location.reload();
+                }
+
+                function registroValido() {
+                    ventana = open('', '', 'width=300, height=100, top=200, left=600');
+                    ventana.document.write('Registro completado');
+                    intervalo = setTimeout(registro, 2000);
+                }
+
+                function registro() {
+                    ventana.close();
+                    var fecha = new Date();
+                    fecha.setMonth(fecha.getMonth() + Number(meses.value));
+                    setCookie('name', nombre.value, fecha);
+                    setCookie('fecha', fecha, fecha);
+                    location.reload();
+                }
+
+                function camposOk() {
+                    var campos = document.getElementsByClassName('error');
+                    return campos.length == 0;
+                }
+
+                function borrarCamposError() {
+                    var campos = document.getElementsByClassName('error');
+                    for (let c = campos.length - 1; c >= 0; c--) {
+                        campos[c].parentElement.removeChild(campos[c]);
+                    }
+                }
+
+                function comprobarMeses() {
+                    var mesNum = Number(meses.value);
+                    var texto = '';
+                    if (meses.value == '' || (mesNum < 1 || mesNum > 24)) {
+                        if (meses.value == '') {
+                            texto = 'Campo sin rellenar';
+                        } else {
+                            texto = 'No coincide el formato';
+                        }
+                        var nodo = document.createElement('p');
+                        nodo.textContent = texto;
+                        nodo.className = 'error';
+                        meses.parentElement.insertBefore(nodo, meses.nextSibling);
+                    }
+                }
+
+                function comprobarNombre() {
+                    var pat1 = /[a-z]/;
+                    var pat2 = /[A-Z]/;
+                    var pat3 = /\d/;
+                    var pat4 = /[\-\_\.]/;
+                    var n = nombre.value;
+                    var val = Boolean(n.match(pat1) && n.match(pat2) && n.match(pat3) && n.match(pat4));
+
+                    var texto = '';
+                    if (nombre.value == '' || !val) {
+                        if (nombre.value == '') {
+                            texto = 'Campo sin rellenar';
+                        } else {
+                            texto = 'No coincide el formato';
+                        }
+                        var nodo = document.createElement('p');
+                        nodo.textContent = texto;
+                        nodo.className = 'error';
+                        nombre.parentElement.insertBefore(nodo, nombre.nextSibling);
+                    }
+                }
+
+                function comprobarTelefono() {
+                    var pat = /^\(\d{3}\)\s\d{2}\-\d{2}\-\d{2}?/;
+                    if (tlfno.value == '' || !tlfno.value.match(pat)) {
+                        if (tlfno.value == '') {
+                            texto = 'Campo sin rellenar';
+                        } else {
+                            texto = 'No coincide el formato';
+                        }
+                        var nodo = document.createElement('p');
+                        nodo.textContent = texto;
+                        nodo.className = 'error';
+                        tlfno.parentElement.insertBefore(nodo, tlfno.nextSibling);
+                    }
+                }
+            </script>
+        </head>
+        <body>
+              <h1>Formulario de registo Formación Doñana</h1>
+              <form id="f">
+
+                  <label>Nombre:
+                        <input id="nombre" type="text" title='Debe contener al menos una minúscula, mayúscula,número y alguno de estos signos (. - _)' />
+                  </label>
+                  <br>
+                  <label>Teléfono:
+                        <input id="tlfno" name="telefono" type="text"  placeholder='(XXX) XX-XX-XX' />
+                  </label>
+                  <br>
+                  <label>Nº meses:
+                        <input id="meses" type="number"  min='1' max='24' title='Debe introducir una cantidad entre 1 y 24'/>
+                  </label>
+                  <br><br>
+
+                  <input type="submit" value="Registrar" />
+
+              </form>
+
+        </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>actividad 4</title>
+    </head>
+    <body>
+        <img src="logo_java.png" width="200" height="400" />
+        <img src="php-logo.png" width="200" height="400" />
+        <script type="text/javascript">
+            function pasar(e){
+                alert("La URL de la imagen es: "+e.target.src);
+            }
+            window.onload = function(){
+                var elementos = document.getElementsByTagName('img')
+                for (el of elementos) {
+                    el.addEventListener("mouseover",pasar);
+                }
+            }
+        </script>
+    </body>
+</html>

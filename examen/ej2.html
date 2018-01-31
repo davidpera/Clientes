@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script type="text/javascript">
+            class Campeonato{
+                constructor(jugadores,juegos){
+                    this.jugadores = jugadores;
+                    this.juegos = juegos;
+                }
+
+                mostrar(){
+                    document.write("Juegos:<br/><br/>");
+                    for (var i = 0; i < this.juegos.length; i++) {
+                        document.write("Juego de mesa "+(i+1)+": "+this.juegos[i].mostrar());
+                    }
+                    document.write("<br/>Jugadores:<br/><br/>");
+                    for (let jug of this.jugadores) {
+                        document.write(jug.mostrar());
+                    }
+                }
+            }
+
+            class Jugador{
+                constructor(nombre,resultados){
+                    this.nombre = nombre;
+                    this.resultados = resultados;
+                }
+
+                mostrar(){
+                    return "Nombre: " + this.nombre + "<br/>" + this.hayCero() + "<br/>Mayor puntuacion: "
+                    + Math.max(...this.resultados) + "<br/>Media: " + this.mediat() + "<br/>Suma: " + this.resultados.reduce((a,b) => a+b);
+                }
+
+                hayCero(){
+                    if (this.resultados.some((a) => a==0)) {
+                        return "tiene una puntuacion con 0";
+                    }else{
+                        return "no tiene una puntuacion con 0";
+                    }
+                }
+
+                mediat(){
+                    var sum = 0;
+                    for (var i = 0; i < this.resultados.length; i++) {
+                        sum += this.resultados[i];
+                    }
+                    return sum/this.resultados.length;
+                }
+            }
+
+            class Juego{
+                constructor(nombre = "juego de mesa",numJugadores = 2){
+                    this.nombre = nombre;
+                    this.numJugadores = numJugadores;
+                }
+
+                mostrar(){
+                    return this.nombre + " tiene " + this.numJugadores + " jugadores";
+                }
+            }
+
+            class JuegoCartas extends Juego{
+                constructor(nombre = "juego de mesa",numJugadores = 2,tipoBaraja = "española",numCartas = 48){
+                    super(nombre,numJugadores);
+                    this.tipoBaraja = tipoBaraja;
+                    this.numCartas = numCartas;
+                }
+
+                mostrar(){
+                    return super.mostrar() + " usa la baraja " + this.tipoBaraja + " con " + this.numCartas + " cartas<br/>";
+                }
+            }
+
+            class JuegoDados extends Juego{
+                constructor(nombre = "juego de mesa",numJugadores = 2, numDados = 2){
+                    super(nombre,numJugadores);
+                    this.numDados = numDados;
+                }
+
+                mostrar(){
+                    return super.mostrar() + " usa " + this.numDados + " dados<br/>";
+                }
+            }
+            var j1 = new JuegoCartas();
+            var j2 = new JuegoDados("D&D",3,15);
+            var juegos = [j1,j2];
+
+            var punt = [23,43,12,32,0]
+            var ju1 = new Jugador("Alan",punt);
+            var jugadores = [ju1];
+
+            var camp = new Campeonato(jugadores,juegos);
+            camp.mostrar();
+
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

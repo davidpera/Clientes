@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var modulos = new Map();
+
+            modulos.set("DWECL","Desarrollo web en entorno cliente");
+            modulos.set("DWESE","Desarrollo web en entorno servidor");
+            modulos.set("DIW","Diseño de interfaces web");
+            modulos.set("DAW","Despliegue de aplicaciones web");
+            modulos.set("EIE","Empresas");
+
+            document.write("Numero de modulos: "+modulos.size+"<br/>");
+            for ([k,v] of modulos) {
+                document.write(v+"("+k+")<br/>");
+            }
+
+            document.write("<br/>Abreviaturas: <br/>");
+            for (k of modulos.keys()) {
+                document.write(k+"&#32;");
+            }
+            document.write("<br/><br/>Nombres: <br/>");
+            for (v of modulos.values()) {
+                document.write(v+"&#32;");
+            }
+            document.write("<br/><br/>Esta el modulo DAW? "+(modulos.has("DAW")?"si":"no"));
+            document.write("<br/>Eliminando DAW<br/><br/>");
+            if (modulos.has("DAW")) {
+                modulos.delete("DAW");
+            }
+
+            for ([k,v] of modulos) {
+                document.write(v+"("+k+")<br/>");
+            }
+        </script>
+    </body>
+</html>

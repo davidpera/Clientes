@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+    var n1 = 0;
+    var n2 = 0;
+    var res = 0;
+    var t = true;
+    console.log(" 1-suma \n 2-resta \n 3-multiplicacion \n 4-divison \n 5-modulo \n"+
+    " 6-potencia \n 7-raiz cuadrada \n 8-paso decimal a otra base \n 9-paso de otra base a decimal \n 10-salir \n");
+    do {
+      var n = prompt("Introduzca el numero de la operacion que quiera realizar: ");
+
+      switch (n) {
+        case "1":
+          pedirNumero();
+          res = n1+n2;
+          console.log("El resultado de la suma es: "+res);
+          break;
+        case "2":
+          pedirNumero();
+          res = n1-n2;
+          console.log("El resultado de la resta es: "+res);
+          break;
+        case "3":
+          pedirNumero();
+          res = n1*n2;
+          console.log("El resultado de la multiplicacion es: "+res);
+          break;
+        case "4":
+          pedirNumero();
+          res = n1/n2;
+          console.log("El resultado de la division es: "+res);
+          break;
+        case "5":
+          pedirNumero();
+          res = n1%n2;
+          console.log("El resultado del modulo es: "+res);
+          break;
+        case "6":
+          pedirNumero();
+          res = Math.pow(n1,n2);
+          console.log("El resultado de la potencia es: "+res);
+          break;
+        case "7":
+          raiz();
+          break;
+        case "8":
+          pasoDecBases();
+          break;
+        case "9":
+          pasoBasesDec();
+          break;
+        case "10":
+          var sal = confirm("Seguro que quiere salir");
+          if(sal){
+            t=false;
+          }
+          break;
+        default:
+          console.log("Esa no es una opcion valida, introduzca 1,2,3,4,5 o 6");
+          break;
+      }
+    } while (t);
+
+
+    function pedirNumero(){
+      n1 = prompt("Primer numero: ");
+      n2 = prompt("Segundo numero: ");
+      if(!isNaN(n1) && !isNaN(n2)){
+        n1 = parseFloat(n1);
+        n2 = parseFloat(n2);
+      }
+
+    }
+
+    function pasoBasesDec(){
+      n1 = prompt("Numero: ");
+      n2 = prompt("En que base esta?: ");
+      var pat2 = /^[0-1]+$/;
+      var pat8 = /^[0-7]+$/;
+      var pat16 = /^[0-9A-F]+$/;
+      switch (n2) {
+        case "2":
+          if (pat2.test(n1)) {
+            console.log(parseInt(n1,2));
+          }else{
+            console.log("El patron del numero en binario es incorrecto");
+          }
+          break;
+        case "8":
+          if (pat8.test(n1)) {
+            console.log(parseInt(n1,8));
+          }else{
+            console.log("El patron del numero en octal es incorrecto");
+          }
+          break;
+        case "16":
+          if (pat16.test(n1)) {
+            console.log(parseInt(n1,16));
+          }else{
+            console.log("El patron del numero en hexaecimal es incorrecto");
+          }
+          break;
+        default:
+          console.log("Esa no es una base valida");
+      }
+    }
+
+
+    function pasoDecBases(){
+      n1 = prompt("Numero: ");
+      n2 = prompt("Base: ");
+      if(!isNaN(n1) && !isNaN(n2)){
+        n1 = parseFloat(n1);
+        n2 = parseFloat(n2);
+        switch (n2) {
+          case 2:
+            console.log(n1.toString(2));
+            break;
+          case 8:
+            console.log(n1.toString(8));
+            break;
+          case 16:
+            console.log(n1.toString(16));
+            break;
+          default:
+            console.log("Esa no es una base valida");
+          }
+      }
+    }
+
+    function raiz(){
+      var n1 = prompt("Numero: ");
+      if(!isNaN(n1) ){
+        res = Math.sqrt(parseFloat(n1));
+      }
+      console.log("El resultado de la raiz cuadrada es: "+res);
+    }
+
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

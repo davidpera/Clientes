@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function cambioCol(){
+          opener.document.body.style.backgroundColor = col.value;
+          opener.hex.value = col.value;
+      }
+    </script>
+  </head>
+  <body>
+      <input type="color" id="col" value="#ffffff" onchange="cambioCol();"/>
+  </body>
+</html>

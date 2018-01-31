@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script>
+            window.onload = function(){
+                var imagenes = document.getElementsByTagName('img');
+                for(im of imagenes){
+                    im.addEventListener("click",describe);
+                }
+            }
+            
+            function describe(e){
+                var parrafo = document.getElementsByTagName('p');
+                var para = document.createElement("p");
+                var nuevo = "";
+                switch(e.target.id){
+                    case "java":
+                        nuevo = document.createTextNode("Java");
+                        break;
+                    case "php":
+                        nuevo = document.createTextNode("PHP");
+                        break;
+                    case "html5":
+                        nuevo = document.createTextNode("HTML5");
+                        break;
+                }
+                para.appendChild(nuevo);
+                div.replaceChild(para,parrafo[0]);
+            }
+        </script>
+    </head>
+    <body>
+        <div id="div">
+            <img id="java" src="1.jpg" width="300" height="300"/>
+            <img id="php" src="2.jpg" width="300" height="300"/>
+            <img id="html5" src="3.jpg" width="300" height="300"/>
+            <p id="par">Logos de lenguajes utilizados</p>
+        </div>
+    </body>
+</html>

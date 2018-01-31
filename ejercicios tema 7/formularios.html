@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style type="text/css">
+
+			label {display: block;}
+			span { color: red;}
+			.mal{background-color: tomato;}
+			.bien{background-color: lightgreen;}
+		</style>
+		<script src="jquery-3.2.1.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+				$('label > input').attr('autocomplete','off');
+				$('label > input').blur(comprobar);
+				$('form > input').on('click',probar);
+			});
+
+			function probar(e)
+			{
+				var val = true;
+				$('label > input').each(function(){
+					if(!$(this).hasClass('bien')){
+						val = false;
+					}
+				});
+				if (val) {
+					alert('Formulario enviado');
+				}else{
+					e.preventDefault();
+					alert('El formulario tiene campos incorrectos o esta incompleto');
+				}
+			}
+
+			function comprobar(e)
+			{
+				pat1 = /^[A-ZÁÉÍÓÚ]{1}[a-záéíóú]*$/;
+				pat2 = /^[0-9]{3}\-[0-9]{6}$/;
+				pat3 = /^[0-9]{5}$/;
+				pat4 = /^[a-z0-9]+\@[a-z]+\.[a-z]{2,3}$/
+				switch ($(this).attr('name')) {
+					case 'nombre':
+						valida($(this),pat1);
+						break;
+					case 'tel':
+						valida($(this),pat2);
+						break;
+					case 'cp':
+						valida($(this),pat3);
+						break;
+					case 'email':
+						valida($(this),pat4);
+						break;
+				}
+			}
+
+			function valida(nodo, pat)
+			{
+				var nombre = nodo.parent().text().replace(':','');
+				if(pat.test(nodo.val())){
+					nodo.removeClass('mal');
+					nodo.addClass('bien');
+					if (nodo.next().text() != '') {
+						nodo.next().remove();
+					}
+				}else{
+					nodo.removeClass('bien');
+					nodo.addClass('mal');
+					if (nodo.next().text() == '') {
+						nodo.after('<span>'+nombre+' incorrecto. '+nodo.attr('placeholder')+'</span>');
+					}
+
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<h1>Formulario IES Doñana</h1>
+		<form name="formulario" id="f">
+			<label> Nombre:
+				<input type="text" name="nombre" placeholder='Xxxx' />
+			</label>
+			<label>Teléfono:
+				<input type="text" name='tel' placeholder="XXX-XXXXXX"/>
+			</label>
+			<label> Código postal:
+				<input type="text" name='cp' placeholder='XXXXX'  />
+			</label>
+			<label> Email:
+				<input type="text" name="email" placeholder='xxx@xxxx.xx'/>
+			</label>
+			<input type="submit" name='enviar' value="Enviar"/>
+		</form>
+	</body>
+</html>

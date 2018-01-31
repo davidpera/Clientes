@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      var n = prompt("Introduzca una frase: ");
+      var pal = prompt("Cual es la palabra que quiere buscar?: ");
+
+      if(n.includes(pal)){
+        var z=n.indexOf(pal);
+        alert("La palabra empieza en la posicion: "+z);
+        var y = pal.length;
+        alert("La palabra tiene "+y+" caracteres de longitud");
+        alert(n.replace(pal, "dwecl"));
+      }else{
+        alert("Esa palabra no esta en la frase");
+      }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

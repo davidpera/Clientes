@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ejercicio 4</title>
+        <style type="text/css">
+            div{
+                height: 200px;
+                width: 200px;
+                float: left;
+            }
+            .destacado{
+                height: 250px;
+                width: 250px;
+            }
+            .rebajado{
+                height: 150px;
+                width: 150px;
+            }
+        </style>
+        <script src="jquery-3.2.1.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('div').on('click',destaca);
+            });
+
+            function destaca(){
+                $(this).stop(true).fadeTo(1,1);
+
+                $('div').removeClass('destacado rebajado');
+                $(this).addClass('destacado');
+                $('div').each(function(){
+                    if (!$(this).hasClass('destacado')){
+                        $(this).addClass('rebajado').fadeTo(1000,0.4);
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <div><img src="0.jpg" width="100%" height="100%"></div>
+        <div><img src="1.jpg" width="100%" height="100%"></div>
+        <div><img src="2.jpg" width="100%" height="100%"></div>
+        <div><img src="3.jpg" width="100%" height="100%"></div>
+        <div><img src="4.jpg" width="100%" height="100%"></div>
+    </body>
+</html>

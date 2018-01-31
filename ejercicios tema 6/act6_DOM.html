@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style type="text/css">
+            #gen{
+                position: absolute;
+                left: 708px;
+                top: 0px;
+            }
+
+            #comp{
+                position: absolute;
+                left: 608px;
+                top: 235px;
+            }
+
+            p{
+                font-size: 100px;
+                text-align: center;
+                line-height: 0px;
+            }
+
+            div{
+                border-width: 2px;
+                border-style: solid;
+                width: 200px;
+                height: 200px;
+            }
+
+            #div2{
+                position: absolute;
+                left: 308px;
+                top: 8px;
+            }
+
+            #div3{
+                position: absolute;
+                left: 158px;
+                top: 270px;
+            }
+
+        </style>
+        <script type="text/javascript">
+            var val1;
+            var val2;
+            window.onload = function(){
+                gen.addEventListener("click",generar);
+                comp.addEventListener("click",comparar);
+            }
+
+            function comparar(){
+                if (body.children[2].children.length == 0){
+                    if (val1 > val2){
+                        var pa = document.createElement("p");
+                        var te = document.createTextNode(val1);
+                        pa.appendChild(te);
+                        body.children[2].appendChild(pa);
+                        body.children[0].removeChild(body.children[0].children[0]);
+                    }else{
+                        var pa = document.createElement("p");
+                        var te = document.createTextNode(val2);
+                        pa.appendChild(te);
+                        body.children[2].appendChild(pa);
+                        body.children[1].removeChild(body.children[1].children[0]);
+                    }
+                }else{
+                    if (val1 > val2){
+                        body.children[2].removeChild(body.children[2].children[0]);
+                        var pa = document.createElement("p");
+                        var te = document.createTextNode(val1);
+                        pa.appendChild(te);
+                        body.children[2].appendChild(pa);
+                        body.children[0].removeChild(body.children[0].children[0]);
+                    }else{
+                        body.children[2].removeChild(body.children[2].children[0]);
+                        var pa = document.createElement("p");
+                        var te = document.createTextNode(val2);
+                        pa.appendChild(te);
+                        body.children[2].appendChild(pa);
+                        body.children[1].removeChild(body.children[1].children[0]);
+                    }
+                }
+            }
+
+            function ponerNumeros(d){
+                if (d == body.children[0]){
+                    var par = document.createElement("p");
+                    val1 = Math.floor(Math.random()*10);
+                    var tex = document.createTextNode(val1);
+                    par.appendChild(tex);
+                    d.appendChild(par);
+                }else{
+                    var par = document.createElement("p");
+                    val2 = Math.floor(Math.random()*10);
+                    while(val2 == val1){
+                       val2 = Math.floor(Math.random()*10);
+                    }
+                    var tex = document.createTextNode(val2);
+                    par.appendChild(tex);
+                    d.appendChild(par);
+                }
+            }
+
+
+            function generar(){
+                var divs = document.getElementsByTagName('div');
+                for (d of divs) {
+                    if (d.children.length == 0){
+                        if (d != body.children[2]) {
+                            ponerNumeros(d);
+
+
+                        }
+                    }else{
+                        if (d != body.children[2]) {
+                            d.removeChild(d.children[0]);
+                            ponerNumeros(d);
+
+                        }
+                    }
+
+                }
+            }
+        </script>
+    </head>
+    <body id="body">
+        <div id="div1">
+        </div>
+        <div id="div2">
+        </div>
+        <div id="div3">
+        </div>
+        <input type="button" id="gen" value="Generar">
+        <input type="button" id="comp" value="Comparar">
+    </body>
+</html>

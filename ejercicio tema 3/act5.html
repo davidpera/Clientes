@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      console.log("UTC -12:Linea internacional de fecha del oeste \n"+
+                  "UTC -11:Isla Midway, Samoa \n"+
+                  "UTC -10:Hawai \n"+
+                  "UTC -9:Alaska \n"+
+                  "UTC -8:Hora del pacifico(USA y Canada) \n"+
+                  "UTC -7:Hora de las montañas rocosas (USA y Canada) \n"+
+                  "UTC -6:America central \n"+
+                  "UTC -5:Hora central(USA y Canada) \n"+
+                  "UTC -4:Hora del Atlantico(Canada) \n"+
+                  "UTC -3:Buenos Aires, Asuncion, Brasilia, Montevideo \n"+
+                  "UTC -2:Atlantico central \n"+
+                  "UTC -1:Azores \n"+
+                  "UTC  0:Hora del meridiano de Greenwich, Londres, Dublin \n"+
+                  "UTC +1:Paris, Madrid, Barcelona, Roma \n"+
+                  "UTC +2:El Cairo \n"+
+                  "UTC +3:Nairobi \n"+
+                  "UTC +4:Baku \n"+
+                  "UTC +5:Ekaterimburgo \n"+
+                  "UTC +6:Astana \n"+
+                  "UTC +7:Bangkok \n"+
+                  "UTC +8:Ulan Bator \n"+
+                  "UTC +9:Tokio \n"+
+                  "UTC +10:Sidney \n"+
+                  "UTC +11:Islas Salomon \n"+
+                  "UTC +12:Wellington \n");
+    var a = parseInt(prompt("Elija una zona horaria: "));
+    var d = new Date();
+    alert((d.getUTCHours()+a)%24+":"+d.getMinutes()+"."+d.getSeconds());
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <script type="text/javascript">
+
+            var imag = document.images;
+            var act = 0;
+            window.onload = function(){
+                for(im of imag){
+                    im.setAttribute("hidden","hidden");
+                    if(im.getAttribute("src") == "1.jpg"){
+                       im.removeAttribute("hidden");
+                    }
+                }
+                var enl = document.getElementsByTagName("a");
+                for(en of enl){
+                    en.addEventListener("click",cambio);
+                }
+            }
+
+            function cambio(e){
+                e.preventDefault();
+                if (e.target.firstChild.nodeValue == "Atras"){
+                    imag[act].setAttribute("hidden","hidden");
+                    act = (act-1) < 0 ? imag.length-1 : act-1;
+                    imag[act].removeAttribute("hidden");
+                }else{
+                    imag[act].setAttribute("hidden","hidden");
+                    act = (act+1)%imag.length;
+                    imag[act].removeAttribute("hidden");
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+        <a href="">Atras</a>
+        <span id="diapositivas">
+        <img src="1.jpg" alt="Diapositiva 1" height="100" width="200">
+        <img src="2.jpg" alt="Diapositiva 2" height="100" width="200">
+        <img src="3.jpg" alt="Diapositiva 3" height="100" width="200">
+        <img src="4.jpg" alt="Diapositiva 3" height="100" width="200">
+        </span>
+        <a href="">Adelante</a>
+    </body>
+</html>

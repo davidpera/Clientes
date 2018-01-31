@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <label for="v">Introduzca las palabras separadas por un espacio</label>
+    <input type="text" id="v"/>
+    <input type="button" value="introducir" onclick="palabras();"/><br/>
+
+    <script>
+
+        var ar = [];
+
+        function palabras(){
+            if(v.value != ""){
+                var nueva = window.open("act7_ventana.html","","width=300, height=300");
+                ar = v.value.split(" ");
+                nueva.document.write("<p>Palabras: "+ar+"</p>");
+                nueva.document.write("<p>Palabras alreves: "+ar.reverse()+"</p>");
+                nueva.document.write("<p>Primera palabra: "+ar[(ar.length-1)]+"</p>");
+                nueva.document.write("<p>Ultima palabra: "+ar[0]+"</p>");
+                nueva.document.write("<p>Numero palabras: "+ar.length+"</p>");
+                nueva.document.write("<p>Ordenado a-z: "+ar.sort()+"</p>");
+                nueva.document.write("<p>Ordenado z-a: "+ar.sort().reverse()+"</p>");
+
+            }else{
+              alert("Debe meter los datos en la cajetilla antes de pulsar el boton")
+            }
+        }
+
+      //p.innerHTML += "<br/>"+ar;
+
+    </script>
+  </body>
+</html>

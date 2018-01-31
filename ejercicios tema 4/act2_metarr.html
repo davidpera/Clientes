@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <p id="p"></p>
+
+    <script>
+      var ar = [2,3,6,1,11];
+      p.innerHTML += "<br/>El Array: "+ar;
+      var te = ar.every(elem => elem >= 0 && Math.floor(elem) === elem);
+      p.innerHTML += "<br/>Son todos enteros positivos?: "+(te == true?"Si":"No");
+      var tri = ar.map(elem2 => elem2*3);
+      p.innerHTML += "<br/>El triple: "+tri;
+      var mul = ar.reduce((tot,num) => tot*num,1);
+      p.innerHTML += "<br/>Multiplicados: "+mul;
+    </script>
+  </body>
+</html>
