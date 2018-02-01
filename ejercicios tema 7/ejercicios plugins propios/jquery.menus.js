@@ -7,10 +7,10 @@
         $('div').css({'background-color':opt.fondo,'color':opt.letra,'width':opt.width,'text-align':opt.alineacion});
 
         this.children('div').hover(function() {
-            $(this).css({'background-color':opt.letra,'color':opt.fondo});
+            $(this).children().css({'backgroundColor':opt.letra,'color':opt.fondo});
             $(this).children().children().slideDown(opt.velocidad);
         }, function() {
-            $(this).css({'background-color':opt.fondo,'color':opt.letra});
+            $(this).children().css({'background-color':opt.fondo,'color':opt.letra});
             $(this).children().children().slideUp(opt.velocidad);
         });
     };

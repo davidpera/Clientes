@@ -16,6 +16,14 @@
         <script src="jquery.menus.js" charset="utf-8"></script>
         <script type="text/javascript">
             $(document).ready(function(){
+                //$('nav').menus();
+                $('nav').menus.defaults = {
+                    velocidad: 'fast',
+                    width: '300px',
+                    fondo: 'green',
+                    letra: 'yellow',
+                    alineacion: 'right',
+                };
                 $('nav').menus();
             });
         </script>
