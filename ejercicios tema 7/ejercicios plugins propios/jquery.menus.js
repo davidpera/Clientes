@@ -6,7 +6,7 @@
         this.children().children().children().css({'display':'none'});
         $('div').css({'background-color':opt.fondo,'color':opt.letra,'width':opt.width,'text-align':opt.alineacion});
 
-        this.children().hover(function() {
+        this.children('div').hover(function() {
             $(this).css({'background-color':opt.letra,'color':opt.fondo});
             $(this).children().children().slideDown(opt.velocidad);
         }, function() {
