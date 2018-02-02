@@ -3,10 +3,10 @@
 
         var opt = $.extend({}, $.fn.menus.defaults, op);
 
-        this.children().children().children().css({'display':'none'});
-        $('div').css({'background-color':opt.fondo,'color':opt.letra,'width':opt.width,'text-align':opt.alineacion});
+        $(this).children().children().children().css({'display':'none'});
+        $(this).find('div').css({'background-color':opt.fondo,'color':opt.letra,'width':opt.width,'text-align':opt.alineacion});
 
-        this.children('div').hover(function() {
+        $(this).children('div').hover(function() {
             $(this).children().css({'backgroundColor':opt.letra,'color':opt.fondo});
             $(this).children().children().slideDown(opt.velocidad);
         }, function() {
