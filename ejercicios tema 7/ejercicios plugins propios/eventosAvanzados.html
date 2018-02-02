@@ -18,19 +18,9 @@
 	<script src="jquery.avanevents.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('.tour').foto();
-			$('.tour').tiempo();
-			$('.tour').on('mostrar', mostrar);
-			$('.tour').trigger('mostrar');
+			$('.tour').mostrar();
+			//$('.tour').mostrarEnCarga();
 		});
-
-		function mostrar(){
-	        var elem = $(this).closest('.tour');
-			var img = '<img src=photos/'+elem.data('loc')+'.jpg width=200px heigth=200px />';
-            elem.children('.results').append(img);
-	        var par = '<p>Weather: '+elem.data('temp')+'</p>';
-	        elem.children('.results').append(par);
-		}
 	</script>
 
 </head>
