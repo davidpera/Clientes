@@ -2,16 +2,16 @@
 
     $.fn.mostrar = function(){
         $(this).one('click', 'input',mostrarFoto);
-        $(this).on('click', 'input',mostrarTiempo);
-        $(this).children('input').trigger('click');
+        $(this).one('click', 'input',mostrarTiempo);
+        //$(this).children('input').trigger('click');
         return  $(this);
     }
     function mostrarFoto(){
         //$(this).on('mostrar.tiempo',mostrarTiempo);
-        //$(this).trigger('mostrar.tiempo');
         var elem = $(this).closest('.tour');
         var img = '<img src=photos/'+elem.data('loc')+'.jpg width=200px heigth=200px />';
         elem.children('.results').append(img);
+        //$(this).trigger('mostrar.tiempo');
     }
 
     function mostrarTiempo(){

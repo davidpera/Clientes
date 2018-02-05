@@ -7,9 +7,9 @@
 
         $.extend(def, op);
 
-        $(this).on('click',function(e){
+        $(this).on('click','.see-photos',function(e){
             e.preventDefault();
-            var elem = $(this).prev();
+            var elem = $(this).parent().find('ul');
             elem.addClass('is-showing-photofy');
             elem.find("li:gt("+(def.nFotos-1)+")").hide();
         });
@@ -18,12 +18,13 @@
     $.fn.mostrarTodo = function(){
         $(this).on('click',function(e){
             e.preventDefault();
-            $('ul ul').addClass('is-showing-photofy');
+            // $('.see-photos').trigger('click');
+            $(this).parent().find('ul ul').addClass('is-showing-photofy');
         });
     };
 
     $.fn.ocultar = function(){
-        $(this).on('click',function(e){
+        $(this).on('click','.hide-tour',function(e){
             e.preventDefault();
             var elem = $(this).closest('.tour');
             elem.hide();
